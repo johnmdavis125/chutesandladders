@@ -18,5 +18,6 @@
     border: 2px solid cadetblue;
     /* background-color: rgb(118, 191, 84); */
     background-image: url("Images/pawn_blue.jpg");
+    /* background-image: none; */
     background-size: 100px;
 } 

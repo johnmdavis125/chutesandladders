@@ -1,10 +1,18 @@
 console.log($); 
 
-// Task 1
+// Task 1 - COMPLETE!!!
 // Generate 10 boxes in a row
 // Create player object
 // Generate dieRoll
 // Move player 
+
+// Task 2 - COMPLETE!!!
+// Generate Full Board
+// Give genBoard function to Start Game button
+// Create new button called roll
+// Give genRandNum & movePlayer call statement to roll button
+// Test if you can roll multiple times along the full board
+// Don't worry about format of board until next task
 
 class Player {
     constructor(name, currentPos){
@@ -14,12 +22,14 @@ class Player {
     movePlayer(){
         console.log(`player starts at ${this.currentPos}`)
         console.log(`player rolled a ${randNum}`)
+        // Reset current pos back to game board
+        $(`#${this.currentPos}`).css('background-image', 'none');
+        // Add die roll to current position
         this.currentPos += randNum
         console.log(`New position is ${this.currentPos}`)
-
+        // Place player on new space
         $(`#${this.currentPos}`).css('background-image', 'url("Images/pawn_blue.jpg")'); 
         $(`#${this.currentPos}`).css('background-size', '100px'); 
-        // $(`#${this.currentPos}`).css('background-color', 'green'); 
     }
     //fall()
     //climb()
@@ -31,12 +41,13 @@ console.log(player1);
 
 // BREAK // BREAK // BREAK // BREAK //
 const $startButton = $('#start-button');
+const $dieRollButton = $('#dieRoll-button'); 
 const $board = $('#board');
 
 let boxIdCounter = 0; 
 const genBoard = () => {
     $board.empty();
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 100; i++) {
       const $box = $('<div>');
       $box.addClass('box');
       $box.attr('id', i + 1);
@@ -57,10 +68,14 @@ const genRandNum = () => {
 
 const startGame = () => {
     genBoard(); 
+
+}
+const dieRoll = () => {
     genRandNum(); 
 }
 
 $startButton.on("click", startGame); 
+$dieRollButton.on("click", dieRoll); 
 
 //
 
