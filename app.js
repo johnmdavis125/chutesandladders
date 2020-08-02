@@ -14,9 +14,14 @@ console.log($);
 // Test if you can roll multiple times along the full board
 // Don't worry about format of board until next task
 
-// Task 3 - Working
+// Task 3 - COMPLETE!!!
 // Upgrade genBoard() to include flex formatting to reflect true board layout
 // Hard code styles in CSS to pre-empt genBoard()
+
+// Task 4 - Working
+// Set board image to the game-board div
+// update move() method - only display box for players current position
+
 
 
 
@@ -28,27 +33,59 @@ class Player {
     movePlayer(){
         console.log(`player starts at ${this.currentPos}`)
         console.log(`player rolled a ${randNum}`)
-        // Reset current pos back to game board
+         // Reset current pos back to game board
         $(`#${this.currentPos}`).css('background-image', 'none');
+        // $(`#${this.currentPos}`).css('z-index', '0');
+        
         // Add die roll to current position
         this.currentPos += randNum
         console.log(`New position is ${this.currentPos}`)
+
         // Place player on new space
-        $(`#${this.currentPos}`).css('background-image', 'url("Images/pawn_blue.jpg")'); 
-        $(`#${this.currentPos}`).css('background-size', '100px'); 
+        // $('#game-board').css('position', 'absolute'); 
+        // $('#game-board').css('z-index', '2');
+
+        // $board.css('position', 'relative');
+        const $img = $('<img id="backgroundImage" src="Images/chutes and ladders board.jpg" alt="game board image">')
+        $img.css('height', '1000px'); 
+        $img.css('width', '1000px'); 
+        $img.css('z-index', '1'); 
+        $img.css('position', 'absolute');  
+        $img.appendTo('#game-board');
+        $img.css('left', '100px');  
+
+        const $playerImg = $('<img id="playerImage" src="Images/pawn_blue.jpg" alt="pawn image">')
+        $playerImg.css('height', '50px'); 
+        $playerImg.css('width', '50px'); 
+        $playerImg.css('z-index', '2'); 
+        $playerImg.css('position', 'absolute');  
+        // $playerImg.appendTo('#game-board')
+        $(`#${this.currentPos}`).css('position', 'relative');
+        $playerImg.appendTo(`#${this.currentPos}`);
+
+        // $(`#${this.currentPos}`).css('background-image', 'url("Images/pawn_blue.jpg")');
+        // $(`#${this.currentPos}`).css('background-size', '100px'); 
+        // $(`#${this.currentPos}`).css('z-index', '2');
+        // $(`#${this.currentPos}`).css('display', 'inline-block');
+ 
+
+        // $(`#${this.currentPos}`).text('hello!');
+
     }
     //fall()
     //climb()
 }
 
-const player1 = new Player('Player 1', 0, 0);  
+const player1 = new Player('Player 1', 0);  
 console.log(player1); 
 
 
 // BREAK // BREAK // BREAK // BREAK //
 const $startButton = $('#start-button');
 const $dieRollButton = $('#dieRoll-button'); 
-const $board = $('#board');
+const $board = $('#game-board');
+
+
 
 ////////////////////
 // genBoard() 
@@ -59,6 +96,11 @@ let rowCounter = 0;
 let toggle = false; 
 const genBoard = () => {
     $board.empty();
+
+    // const $img = $('<img id="backgroundImage" src="Images/chutes and ladders board.jpg" alt="game board image">')
+    // $img.appendTo('#game-board')
+    // $img.css('position', 'absolute');  
+
     for (let i = 0; i < 10; i++) {
         let $row = $('<div>'); 
         if (toggle === false){
@@ -66,7 +108,6 @@ const genBoard = () => {
         } else {
             $row.addClass('row-reverse');
         }
-        $row.appendTo('#game-board'); 
 
         let boxCounter = 1 + (rowCounter * 10)
         for (let i = 0; i < 10; i++){
@@ -77,6 +118,7 @@ const genBoard = () => {
             $box.appendTo($row); 
             console.log($box); 
             boxCounter += 1; 
+
         }        
     // toggle (re-factor later with element.toggleAttribute() )
     if (toggle === false){
@@ -85,7 +127,10 @@ const genBoard = () => {
         toggle = false; 
     }
     rowCounter += 1; 
+    $row.appendTo('#game-board'); 
+    // $row.appendTo('#backgroundImage'); 
     } // end outer for loop
+
 } // END genBoard()
 
 
@@ -225,3 +270,17 @@ $dieRollButton.on("click", dieRoll);
 
 // // Create new instance of Factory class called ladderFactory
 // const ladderFactory = new Factory('Ladders Inc');
+
+// FUTURE TASKS
+// Task - later
+    // write a function that runs through 100 rounds of the game? 
+
+// Task - later 
+    // build a custom array based on # of players user selects
+    // with each die roll, index position updates
+    // conditional - if reach end of index, start over
+    // app.js - css - only change id or class, styling should be in style.css file
+
+    // PROGRAM START
+
+    
