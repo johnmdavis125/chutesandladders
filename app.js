@@ -50,18 +50,44 @@ const $startButton = $('#start-button');
 const $dieRollButton = $('#dieRoll-button'); 
 const $board = $('#board');
 
-let boxIdCounter = 0; 
+////////////////////
+// genBoard() 
+////////////////////
+// Could use 'i' for setting box ID's, but decided to use boxIdCounter to be more descriptive for readability
+// let boxCounter = 1;
+let rowCounter = 0;  
+let toggle = false; 
 const genBoard = () => {
     $board.empty();
     for (let i = 0; i < 10; i++) {
-      const $box = $('<div>');
-      $box.addClass('box');
-      $box.attr('id', i + 1);
-      $box.text(i + 1);  
-      $box.appendTo('#game-board'); 
-      console.log($box); 
+        let $row = $('<div>'); 
+        if (toggle === false){
+            $row.addClass('row-standard'); 
+        } else {
+            $row.addClass('row-reverse');
+        }
+        $row.appendTo('#game-board'); 
+
+        let boxCounter = 1 + (rowCounter * 10)
+        for (let i = 0; i < 10; i++){
+            const $box = $('<div>');
+            $box.addClass('box');
+            $box.attr('id', boxCounter);
+            $box.text(boxCounter);    
+            $box.appendTo($row); 
+            console.log($box); 
+            boxCounter += 1; 
+        }        
+    // toggle (re-factor later with element.toggleAttribute() )
+    if (toggle === false){
+        toggle = true; 
+    } else {
+        toggle = false; 
     }
-}
+    rowCounter += 1; 
+    } // end outer for loop
+} // END genBoard()
+
 
 let randNum = 0; 
 const genRandNum = () => {
