@@ -14,6 +14,12 @@ console.log($);
 // Test if you can roll multiple times along the full board
 // Don't worry about format of board until next task
 
+// Task 3 - Working
+// Upgrade genBoard() to include flex formatting to reflect true board layout
+// Hard code styles in CSS to pre-empt genBoard()
+
+
+
 class Player {
     constructor(name, currentPos){
         this.name = name
@@ -47,12 +53,12 @@ const $board = $('#board');
 let boxIdCounter = 0; 
 const genBoard = () => {
     $board.empty();
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 10; i++) {
       const $box = $('<div>');
       $box.addClass('box');
       $box.attr('id', i + 1);
       $box.text(i + 1);  
-      $box.appendTo('body'); 
+      $box.appendTo('#game-board'); 
       console.log($box); 
     }
 }

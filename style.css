@@ -21,3 +21,11 @@
     /* background-image: none; */
     background-size: 100px;
 } 
+
+#game-board {
+    border: 5px solid cadetblue;
+    height: 1000px;
+    width: 1000px;
+    display: flex; 
+    flex-wrap: wrap;
+}
