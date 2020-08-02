@@ -11,7 +11,16 @@ class Player {
         this.name = name
         this.currentPos = currentPos
     }
-    //move()
+    movePlayer(){
+        console.log(`player starts at ${this.currentPos}`)
+        console.log(`player rolled a ${randNum}`)
+        this.currentPos += randNum
+        console.log(`New position is ${this.currentPos}`)
+
+        $(`#${this.currentPos}`).css('background-image', 'url("Images/pawn_blue.jpg")'); 
+        $(`#${this.currentPos}`).css('background-size', '100px'); 
+        // $(`#${this.currentPos}`).css('background-color', 'green'); 
+    }
     //fall()
     //climb()
 }
@@ -37,11 +46,18 @@ const genBoard = () => {
     }
 }
 
+let randNum = 0; 
+const genRandNum = () => {
+    // for (let i = 0; i < 100; i++){
+        randNum = Math.floor(Math.random() * 6) + 1
+        console.log(randNum); 
+    //}
+    player1.movePlayer(); 
+}
+
 const startGame = () => {
     genBoard(); 
-
-    // $('#2').css('background-image', )
-
+    genRandNum(); 
 }
 
 $startButton.on("click", startGame); 
