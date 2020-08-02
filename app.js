@@ -39,6 +39,9 @@ const genBoard = () => {
 
 const startGame = () => {
     genBoard(); 
+
+    // $('#2').css('background-image', )
+
 }
 
 $startButton.on("click", startGame); 
