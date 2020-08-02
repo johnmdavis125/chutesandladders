@@ -34,8 +34,10 @@ class Player {
         console.log(`player starts at ${this.currentPos}`)
         console.log(`player rolled a ${randNum}`)
          // Reset current pos back to game board
-        $(`#${this.currentPos}`).css('background-image', 'none');
+        // $(`#${this.currentPos}`).css('background-image', 'none');
         // $(`#${this.currentPos}`).css('z-index', '0');
+        const $playerImg = $('<img id="playerImage" src="Images/pawn_blue.jpg" alt="pawn image">')
+        $('#playerImage').remove(); 
         
         // Add die roll to current position
         this.currentPos += randNum
@@ -52,12 +54,13 @@ class Player {
         $img.css('z-index', '1'); 
         $img.css('position', 'absolute');  
         $img.appendTo('#game-board');
-        $img.css('left', '100px');  
+        // $img.css('left', '100px');  
 
-        const $playerImg = $('<img id="playerImage" src="Images/pawn_blue.jpg" alt="pawn image">')
+        
         $playerImg.css('height', '50px'); 
         $playerImg.css('width', '50px'); 
         $playerImg.css('z-index', '2'); 
+        $playerImg.css('margin', '20px 10px 3px 3px'); 
         $playerImg.css('position', 'absolute');  
         // $playerImg.appendTo('#game-board')
         $(`#${this.currentPos}`).css('position', 'relative');
@@ -111,12 +114,18 @@ const genBoard = () => {
 
         let boxCounter = 1 + (rowCounter * 10)
         for (let i = 0; i < 10; i++){
-            const $box = $('<div>');
-            $box.addClass('box');
-            $box.attr('id', boxCounter);
-            $box.text(boxCounter);    
-            $box.appendTo($row); 
-            console.log($box); 
+            const $boxOuter = $('<div>');
+            const $boxInner = $('<div>'); 
+            $boxOuter.addClass('boxOuter');
+            // $boxInner.addClass('boxInner');
+            $boxOuter.attr('id', boxCounter);
+            // $boxInner.attr('id', boxCounter + 0.5);
+            $boxOuter.text(boxCounter);    
+            // $boxInner.text('hi');    
+            // $boxInner.appendTo($boxOuter)
+            $boxOuter.appendTo($row); 
+            console.log($boxOuter); 
+            // console.log($boxInner); 
             boxCounter += 1; 
 
         }        
