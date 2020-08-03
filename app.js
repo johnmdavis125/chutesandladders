@@ -49,61 +49,83 @@ console.log($);
     // Prompt user - store & manipulate value
 
 
-
 ///////////////////
 // PLAYER CLASS
 //////////////////
 
 class Player {
-    constructor(name, currentPos){
+    constructor(name, color, playerImgSrc){
         this.name = name
-        this.currentPos = currentPos
+        this.color = color
+        this.playerImgSrc = playerImgSrc
+        this.currentPos = 0;
     }
     move(){
-        // To be commented out - feedback
         console.log(`player starts at ${this.currentPos}`)
         console.log(`player rolled a ${randNum}`)
+        let $playerImg = $(`<img id="player-${this.color}" src=${this.playerImgSrc} alt="${this.color} pawn image">`)    
         // remove player from current position
-        const $playerImg = $('<img id="playerImage" src="Images/pawn_blue.jpg" alt="pawn image">')
-        $('#playerImage').remove(); 
+        $($playerImg).remove(); 
         // Update position based on die roll
         this.currentPos += randNum
         console.log(`New position is ${this.currentPos}`)
         // Add player to new position
-        $playerImg.appendTo(`#${this.currentPos}`);
+        $($playerImg).appendTo(`#${this.currentPos}`);
     }
     //climb(ladder) - make dynamic
     climb(){
-        const $playerImg = $('<img id="playerImage" src="Images/pawn_blue.jpg" alt="pawn image">')
+        // let $playerImg = current player image
+        //
+        //
+        // const $playerImg = $('<img id="playerImage" src="Images/pawn_blue.jpg" alt="pawn image">')
         console.log('player climbs ladder'); 
-        if (player1.currentPos === ladder1.startPos){
-            $('#playerImage').remove();
-            player1.currentPos = ladder1.endPos
-            $playerImg.appendTo(`#${ladder1.endPos}`)
-        } else {
-            console.log('invalid result'); 
+ 
+
+        // Hard coded value for now
+        this.currentPos += 10; 
+        // append playerImg to current pos
+        $(`#player-${this.color}`).remove();
+    
         }        
-    }
+    
     fall(chute){
         console.log('player falls down chute'); 
     }
 }
 
-const player1 = new Player('Player 1', 0);  
-console.log(player1); 
+// const player1 = new Player('Player 1', 0);  
+// console.log(player1); 
 
 ///////////////
 
+
 class PlayerFactory {
-    constructor (company) {
-        this.company = company;
+    constructor (name) {
+        this.name = name;
         this.players = [];
+        // include color of image? 
     }
-    genPlayer () {
-        const player = new PlayerFactory(this.company, this.laddersArray.length);
+    genPlayer (name, color, playerImgSrc) {
+        const player = new Player(name, color, playerImgSrc); 
         this.players.push(player);
     }
 }
+
+const playMaker = new PlayerFactory('customNumPlayers')
+console.log(playMaker); 
+//Hard code user's choice for now
+const $userChoiceNumPlayers = 4; 
+
+playerImgSourceArr = ['Images/pawn_blue.jpg', 'Images/pawn_red.jpg', 'Images/pawn_green.jpg', 'Images/pawn_black.jpg']; 
+playerColors = ['blue', 'red', 'green', 'black']; 
+for (let i = 0; i < $userChoiceNumPlayers; i++){
+    console.log(playMaker); 
+    playMaker.genPlayer(`player${i + 1}`, `${playerColors[i]}`, `${playerImgSourceArr[i]}`); 
+
+}
+console.log(playMaker);
+// for loop - makes custom # players - calls genPlayer ftn
+
 
 // // Create new instance of Factory class called ladderFactory
 // const ladderFactory = new Factory('Ladders Inc');
@@ -136,17 +158,14 @@ console.log(ladder1);
 //     }
 // }
 
-
-
-// BREAK // BREAK // BREAK // BREAK //
+///////////////////////////////////////
+// GAME SEQUENCE
+///////////////////////////////////////
 const $startButton = $('#start-button');
 const $dieRollButton = $('#dieRoll-button'); 
 const $board = $('#game-board');
-
-
-
 ////////////////////
-// genBoard() 
+// GENBOARD() 
 ////////////////////
 // Could use 'i' for setting box ID's, but decided to use boxIdCounter to be more descriptive for readability
 // let boxCounter = 1;
@@ -206,6 +225,7 @@ const genBoard = () => {
     $img.appendTo('#game-board');
     // $img.css('left', '100px');  
 
+    // prompt with modal HERE // 
 } // END genBoard()
 
 /////////////////////
@@ -213,11 +233,12 @@ const genBoard = () => {
 /////////////////////
 let randNum = 0; 
 const genRandNum = () => {
-    // for (let i = 0; i < 100; i++){
         randNum = Math.floor(Math.random() * 6) + 1
         console.log(randNum); 
-    //}
-    player1.move(); 
+    // playMaker.players[currentTurn - 1].move(); 
+    console.log('hello currentPlayer is'); 
+    console.log(currentPlayer);
+    currentPlayer.move(); 
 }
 
 ////////////////////
@@ -231,48 +252,72 @@ const startGame = () => {
 
 }
 
+//
+
+let currentTurn = 0; 
+let currentPlayer = playMaker.players[currentTurn]; 
+const switchTurn = () => {
+console.log($userChoiceNumPlayers); 
+console.log('starting switchTurn ftn'); 
+
+    
+    if (currentTurn === $userChoiceNumPlayers){
+        currentTurn = 0; 
+    }
+    currentTurn += 1; 
+    currentPlayer = playMaker.players[currentTurn];
+
+    console.log(`it is now ${playMaker.players[currentTurn].name}'s turn`)
+
+    // come back to this - it doesn't like .name after 4 rolls
+    // probably a problem with logic in switchTurn()
+
+}
+
+
 ////////////////////
 // dieRoll()
 ////////////////////
 const dieRoll = () => {
     genRandNum(); 
-    // genRandNum() includes moving the player with move() method
-    // checkFallOrClimb(); 
-// }
+    // genRandNum() calls current player's move() method
+    checkFallOrClimb(); 
+    switchTurn();  
+}
 
 ///////////////////////
 // checkFallOrClimb()
 ///////////////////////
 
 //let startPoints = array of lad/chute starting positions? 
-const ladderStartPoints = [1, 4, 9, 21, 28, 36, 51, 71, 80]; 
-const chuteStartPoints = [16, 47, 49, 56, 62, 64, 93, 95, 98]; 
-const checkClimb = (startPoint => startPoint === player1.currentPos);
-let climbTime = ladderStartPoints.findIndex(checkClimb);
-if (climbTime >= 0){
-    console.log(`time to climb ladder${climbTime + 1}`);
-    player1.climb(); 
-} else {
-    console.log('no ladders, check for chutes'); 
-}
 
-const checkFall = (startPoint => startPoint === player1.currentPos); 
-let fallTime = chuteStartPoints.findIndex(checkFall); 
-if (fallTime >= 0){
-    console.log(`time to fall down chute${fallTime + 1}`); 
-    player1.fall();
-} else {
-    console.log(`no chutes, next player's turn!`); 
-}
 
+const checkFallOrClimb = () => {
+
+    const ladderStartPoints = [1, 4, 9, 21, 28, 36, 51, 71, 80]; 
+    const chuteStartPoints = [16, 47, 49, 56, 62, 64, 93, 95, 98]; 
+
+    const checkClimb = (startPoint => startPoint === currentPlayer.currentPos);
+    let climbTime = ladderStartPoints.findIndex(checkClimb);
+    if (climbTime >= 0){
+        console.log(`time to climb ladder${climbTime + 1}`);
+        currentPlayer.climb(); 
+    } else {
+        console.log('no ladders, check for chutes'); 
+    }
+
+    const checkFall = (startPoint => startPoint === currentPlayer.currentPos); 
+    let fallTime = chuteStartPoints.findIndex(checkFall); 
+    if (fallTime >= 0){
+        console.log(`time to fall down chute${fallTime + 1}`); 
+        currentPlayer.fall();
+    } else {
+        console.log(`no chutes, next player's turn!`); 
+    }
+}
 
 
 // look through array methods homework - need one to execute a function based on the first instance of criteria
-
-}
-
-
-
 
 
 //
