@@ -86,6 +86,7 @@
     z-index: 2; 
     margin: 20px 10px 3px 3px;
     position: absolute; 
+
 }
 
 #player-blue {
@@ -117,3 +118,29 @@
     position: absolute; 
 }
 
+#waitingArea {
+    background-color: teal;
+    height: 100px; 
+    width: 400px; 
+    margin: 10px; 
+    display: flex; 
+    justify-content: space-around;
+    align-items: center;
+  
+}
+#waitingArea > img {
+    margin: 10px; 
+    display: inline-block; 
+    /* display: flex; 
+    flex-wrap: wrap; 
+    justify-content: space-between; */
+  
+}
+
+.playerSeat {
+    height: 80px; 
+    width: 80px; 
+    background-color: turquoise;
+    display: flex; 
+    justify-content: center;
+}
