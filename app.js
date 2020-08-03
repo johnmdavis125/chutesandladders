@@ -63,14 +63,15 @@ class Player {
     move(){
         console.log(`player starts at ${this.currentPos}`)
         console.log(`player rolled a ${randNum}`)
-        let $playerImg = $(`<img id="player-${this.color}" src=${this.playerImgSrc} alt="${this.color} pawn image">`)    
+        let $playerImg = $(`<img class="player" src=${this.playerImgSrc} alt="pawn image">`)    
         // remove player from current position
         $($playerImg).remove(); 
         // Update position based on die roll
         this.currentPos += randNum
         console.log(`New position is ${this.currentPos}`)
         // Add player to new position
-        $($playerImg).appendTo(`#${this.currentPos}`);
+        console.log($($playerImg)); 
+        $playerImg.appendTo(`#${this.currentPos}`);
     }
     //climb(ladder) - make dynamic
     climb(){
@@ -79,13 +80,14 @@ class Player {
         //
         // const $playerImg = $('<img id="playerImage" src="Images/pawn_blue.jpg" alt="pawn image">')
         console.log('player climbs ladder'); 
- 
-
+        let $playerImg = $(`<img class="player" src="${this.playerImgSrc}" alt="pawn image">`)    
+        $('.player')[currentTurn].remove(); 
         // Hard coded value for now
         this.currentPos += 10; 
+        console.log(`New position is ${this.currentPos}`)
         // append playerImg to current pos
-        $(`#player-${this.color}`).remove();
-    
+        $playerImg.appendTo(`#${this.currentPos}`);
+
         }        
     
     fall(chute){
@@ -114,9 +116,12 @@ class PlayerFactory {
 const playMaker = new PlayerFactory('customNumPlayers')
 console.log(playMaker); 
 //Hard code user's choice for now
-const $userChoiceNumPlayers = 4; 
+// const $userChoiceNumPlayers = 4; 
+const $userChoiceNumPlayers = 3; 
+// const $userChoiceNumPlayers = 2; 
+// const $userChoiceNumPlayers = 1; 
 
-playerImgSourceArr = ['Images/pawn_blue.jpg', 'Images/pawn_red.jpg', 'Images/pawn_green.jpg', 'Images/pawn_black.jpg']; 
+const playerImgSourceArr = ['Images/pawn_blue.jpg', 'Images/pawn_red.jpg', 'Images/pawn_green.jpg', 'Images/pawn_black.jpg']; 
 playerColors = ['blue', 'red', 'green', 'black']; 
 for (let i = 0; i < $userChoiceNumPlayers; i++){
     console.log(playMaker); 
@@ -464,3 +469,7 @@ $dieRollButton.on("click", dieRoll);
     // Switch styling of player & board image to inherinted properties from classes on style.css
     // Change append player image to append player itself in move() method on player class
     // Change style - position relative to .boxOuter
+
+    // Add "DEMO" button
+        // runs through 50 cycles of the rollDie() action
+        // place a very brief pause in between each cycle so its legible

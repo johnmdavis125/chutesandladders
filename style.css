@@ -80,7 +80,36 @@
     flex-direction: row-reverse;
 }
 
-#playerImage {
+.player {
+    height: 50px; 
+    width: 50px; 
+    z-index: 2; 
+    margin: 20px 10px 3px 3px;
+    position: absolute; 
+}
+
+#player-blue {
+    height: 50px; 
+    width: 50px; 
+    z-index: 2; 
+    margin: 20px 10px 3px 3px;
+    position: absolute; 
+}
+#player-red {
+    height: 50px; 
+    width: 50px; 
+    z-index: 2; 
+    margin: 20px 10px 3px 3px;
+    position: absolute; 
+}
+#player-green {
+    height: 50px; 
+    width: 50px; 
+    z-index: 2; 
+    margin: 20px 10px 3px 3px;
+    position: absolute; 
+}
+#player-black {
     height: 50px; 
     width: 50px; 
     z-index: 2; 
