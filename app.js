@@ -18,12 +18,22 @@ console.log($);
 // Upgrade genBoard() to include flex formatting to reflect true board layout
 // Hard code styles in CSS to pre-empt genBoard()
 
-// Task 4 - Working
+// Task 4 - COMPLETE!!!
 // Set board image to the game-board div
 // update move() method - only display box for players current position
+    // Changed the approach here to incorporate z-index. 
+    // Bug-hunted for a while - z-index is complicated, does not allow for manipulation of background-images...which is exactly what I was trying to use it for. So, had to make some workarounds. 
+
+// Task 5 - Working
+// Re-arrange order of operations to avoid duplicate game boards
+// Create a test ladder
+// Add checkFallorClimb() to rollDie function
+ 
 
 
-
+///////////////////
+// PLAYER CLASS
+//////////////////
 
 class Player {
     constructor(name, currentPos){
@@ -47,23 +57,22 @@ class Player {
         // $('#game-board').css('position', 'absolute'); 
         // $('#game-board').css('z-index', '2');
 
-        // $board.css('position', 'relative');
-        const $img = $('<img id="backgroundImage" src="Images/chutes and ladders board.jpg" alt="game board image">')
-        $img.css('height', '1000px'); 
-        $img.css('width', '1000px'); 
-        $img.css('z-index', '1'); 
-        $img.css('position', 'absolute');  
-        $img.appendTo('#game-board');
-        // $img.css('left', '100px');  
+        // const $img = $('<img id="backgroundImage" src="Images/chutes and ladders board.jpg" alt="game board image">')
+        // $img.css('height', '1000px'); 
+        // $img.css('width', '1000px'); 
+        // $img.css('z-index', '1'); 
+        // $img.css('position', 'absolute');  
+        // $img.appendTo('#game-board');
+        // // $img.css('left', '100px');  
 
         
-        $playerImg.css('height', '50px'); 
-        $playerImg.css('width', '50px'); 
-        $playerImg.css('z-index', '2'); 
-        $playerImg.css('margin', '20px 10px 3px 3px'); 
-        $playerImg.css('position', 'absolute');  
+        // $playerImg.css('height', '50px'); 
+        // $playerImg.css('width', '50px'); 
+        // $playerImg.css('z-index', '2'); 
+        // $playerImg.css('margin', '20px 10px 3px 3px'); 
+        // $playerImg.css('position', 'absolute');  
         // $playerImg.appendTo('#game-board')
-        $(`#${this.currentPos}`).css('position', 'relative');
+        // $(`#${this.currentPos}`).css('position', 'relative');
         $playerImg.appendTo(`#${this.currentPos}`);
 
         // $(`#${this.currentPos}`).css('background-image', 'url("Images/pawn_blue.jpg")');
@@ -75,12 +84,53 @@ class Player {
         // $(`#${this.currentPos}`).text('hello!');
 
     }
-    //fall()
-    //climb()
+    //climb(ladder) - make dynamic
+    climb(){
+        const $playerImg = $('<img id="playerImage" src="Images/pawn_blue.jpg" alt="pawn image">')
+        console.log('player climbs ladder'); 
+        if (player1.currentPos === ladder1.startPos){
+            $('#playerImage').remove();
+            player1.currentPos = ladder1.endPos
+            $playerImg.appendTo(`#${ladder1.endPos}`)
+        } else {
+            console.log('invalid result'); 
+        }        
+    }
+    fall(chute){
+        console.log('player falls down chute'); 
+    }
 }
 
 const player1 = new Player('Player 1', 0);  
 console.log(player1); 
+
+////////////////////
+// LADDER CLASS
+////////////////////
+
+class Ladder {
+    constructor(name, startPos, endPos){
+        this.name = name
+        this.startPos = startPos
+        this.endPos = endPos
+    }
+}
+
+const ladder1 = new Ladder('ladder1', 1, 38); 
+console.log(ladder1); 
+
+///////////////////
+// CHUTE CLASS
+///////////////////
+
+// class Chute {
+//     constructor(name, startPos, endPos){
+//         this.name = name
+//         this.startPos = startPos
+//         this.endPos = endPos
+//     }
+// }
+
 
 
 // BREAK // BREAK // BREAK // BREAK //
@@ -123,6 +173,7 @@ const genBoard = () => {
             $boxOuter.text(boxCounter);    
             // $boxInner.text('hi');    
             // $boxInner.appendTo($boxOuter)
+            $boxOuter.css('position', 'relative');
             $boxOuter.appendTo($row); 
             console.log($boxOuter); 
             // console.log($boxInner); 
@@ -140,9 +191,20 @@ const genBoard = () => {
     // $row.appendTo('#backgroundImage'); 
     } // end outer for loop
 
+    // place actual board image
+    const $img = $('<img id="backgroundImage" src="Images/chutes and ladders board.jpg" alt="game board image">')
+    $img.css('height', '1000px'); 
+    $img.css('width', '1000px'); 
+    $img.css('z-index', '1'); 
+    $img.css('position', 'absolute');  
+    $img.appendTo('#game-board');
+    // $img.css('left', '100px');  
+
 } // END genBoard()
 
-
+/////////////////////
+// genRandNum()
+/////////////////////
 let randNum = 0; 
 const genRandNum = () => {
     // for (let i = 0; i < 100; i++){
@@ -152,14 +214,62 @@ const genRandNum = () => {
     player1.movePlayer(); 
 }
 
+////////////////////
+// startGame()
+////////////////////
+
 const startGame = () => {
+    //modal
+    //prompt names
     genBoard(); 
 
 }
+
+////////////////////
+// dieRoll()
+////////////////////
 const dieRoll = () => {
     genRandNum(); 
+    // genRandNum() includes moving the player with move() method
+    // checkFallOrClimb(); 
+// }
+
+///////////////////////
+// checkFallOrClimb()
+///////////////////////
+
+//let startPoints = array of lad/chute starting positions? 
+const ladderStartPoints = [1, 4, 9, 21, 28, 36, 51, 71, 80]; 
+const chuteStartPoints = [16, 47, 49, 56, 62, 64, 93, 95, 98]; 
+const checkClimb = (startPoint => startPoint === player1.currentPos);
+let climbTime = ladderStartPoints.findIndex(checkClimb);
+if (climbTime >= 0){
+    console.log(`time to climb ladder${climbTime + 1}`);
+    player1.climb(); 
+} else {
+    console.log('no ladders, check for chutes'); 
 }
 
+const checkFall = (startPoint => startPoint === player1.currentPos); 
+let fallTime = chuteStartPoints.findIndex(checkFall); 
+if (fallTime >= 0){
+    console.log(`time to fall down chute${fallTime + 1}`); 
+    player1.fall();
+} else {
+    console.log(`no chutes, next player's turn!`); 
+}
+
+
+
+// look through array methods homework - need one to execute a function based on the first instance of criteria
+
+}
+
+
+
+
+
+//
 $startButton.on("click", startGame); 
 $dieRollButton.on("click", dieRoll); 
 
@@ -292,4 +402,12 @@ $dieRollButton.on("click", dieRoll);
 
     // PROGRAM START
 
-    
+
+
+
+
+
+// RE-FACTOR TO-DOs
+    // Switch styling of player & board image to inherinted properties from classes on style.css
+    // Change append player image to append player itself in move() method on player class
+    // Change style - position relative to .boxOuter
