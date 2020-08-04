@@ -26,27 +26,23 @@ class Player {
         // let $playerImg = $(`<img class="player" src=${this.playerImgSrc} alt="pawn image">`)    
         // remove player from current position
         // $($playerImg).remove(); 
+       
         // Update position based on die roll
         this.currentPos += randNum
         console.log(`New position is ${this.currentPos}`)
-        // Add player to new position
-        console.log($($playerImg)); 
-        $playerImg.appendTo(`#${this.currentPos}`);
+        
+        // Add player to new position 
+        $('.player').eq(indexNum).appendTo(`#${this.currentPos}`);
     }
     //climb(ladder) - make dynamic
     climb(){
-        // let $playerImg = current player image
-        //
-        //
-        // const $playerImg = $('<img id="playerImage" src="Images/pawn_blue.jpg" alt="pawn image">')
-        console.log('player climbs ladder'); 
-        let $playerImg = $(`<img class="player" src="${this.playerImgSrc}" alt="pawn image">`)    
-        $('.player')[currentTurn].remove(); 
-        // Hard coded value for now
+        console.log('player climbs ladder');
+        // Hard coded value for now  
         this.currentPos += 10; 
+
         console.log(`New position is ${this.currentPos}`)
         // append playerImg to current pos
-        $playerImg.appendTo(`#${this.currentPos}`);
+        $('.player').eq(indexNum).appendTo(`#${this.currentPos}`);
         }        
     fall(chute){
         console.log('player falls down chute'); 
@@ -180,18 +176,22 @@ const genBoard = () => {
 //////////////////////////
 // START SETPLAYERS()
 //////////////////////////
+const playMaker = new PlayerFactory('customNumPlayers')
+console.log(playMaker);
+console.log(playMaker.players);  
 
 const setPlayers = () => {
     const $userChoiceNumPlayers = prompt('How many players?'); 
-    let $playerImg = $(`<img class="player" src=${this.playerImgSrc} alt="pawn image">`) 
+    // let $playerImg = $(`<img class="player" src=${this.playerImgSrc} alt="pawn image">`) 
 
-    const playMaker = new PlayerFactory('customNumPlayers')
+    // const playMaker = new PlayerFactory('customNumPlayers')
     console.log('this is playMaker');
     console.log(playMaker); 
 
     const playerImgSourceArr = ['Images/pawn_blue.jpg', 'Images/pawn_red.jpg', 'Images/pawn_green.jpg', 'Images/pawn_black.jpg']; 
-    playerColors = ['blue', 'red', 'green', 'black']; 
+    const playerColors = ['blue', 'red', 'green', 'black']; 
     
+
     // generate players
     for (let i = 0; i < $userChoiceNumPlayers; i++){
         // console.log('this is playmaker'); 
@@ -204,6 +204,7 @@ const setPlayers = () => {
     }
     // console.log('this is playmaker third time'); 
     // console.log(playMaker);
+
 }
     // Place in starting area
     // let $playerImg = $(`<img class="player" src=${this.playerImgSrc} alt="pawn image">`)   
@@ -245,54 +246,56 @@ const checkFallOrClimb = () => {
     const ladderStartPoints = [1, 4, 9, 21, 28, 36, 51, 71, 80]; 
     const chuteStartPoints = [16, 47, 49, 56, 62, 64, 93, 95, 98]; 
 
-    const checkClimb = (startPoint => startPoint === currentPlayer.currentPos);
+    const checkClimb = (startPoint => startPoint === playMaker.players[indexNum].currentPos);
     let climbTime = ladderStartPoints.findIndex(checkClimb);
     if (climbTime >= 0){
         console.log(`time to climb ladder${climbTime + 1}`);
-        currentPlayer.climb(); 
+        playMaker.players[indexNum].climb(); 
     } else {
         console.log('no ladders, check for chutes'); 
     }
 
-    const checkFall = (startPoint => startPoint === currentPlayer.currentPos); 
+    const checkFall = (startPoint => startPoint === playMaker.players[indexNum].currentPos); 
     let fallTime = chuteStartPoints.findIndex(checkFall); 
     if (fallTime >= 0){
         console.log(`time to fall down chute${fallTime + 1}`); 
-        currentPlayer.fall();
+        playMaker.players[indexNum].fall();
     } else {
         console.log(`no chutes, next player's turn!`); 
     }
 }
+
+
 ///////////////////////
 // END checkFallOrClimb()
 ///////////////////////
 
 /////////////////////
-// genRandNum()
+// rollDie()
 /////////////////////
 let randNum = 0; 
-const genRandNum = () => {
+const rollDie = () => {
         randNum = Math.floor(Math.random() * 6) + 1
-        console.log(randNum); 
+        console.log(`die rolled is ${randNum}`); 
 
-    // playMaker.players[currentTurn - 1].move(); 
-    // console.log('hello currentPlayer is'); 
-    // console.log(currentPlayer);
-    // currentPlayer.move(); 
+
 }
 
-// ////////////////////
-// // dieRoll()
-// ////////////////////
-// let currentPlayer = playMaker.players[0]; 
-// console.log(currentPlayer); 
+////////////////////
+// playTurn()
+////////////////////
+const playTurn = () => {
+    console.log('this is playMaker');
+    console.log(playMaker);
+    console.log(indexNum); 
+    let currentPlayer = playMaker.players[indexNum];
+    console.log(currentPlayer);  
 
-// const dieRoll = () => {
-//     genRandNum(); 
-//     currentPlayer.move();  
-//     checkFallOrClimb(); 
-//     switchTurn();  
-// }
+    rollDie(); 
+    currentPlayer.move();  
+    checkFallOrClimb(); 
+    switchTurn();  
+}
 
 ////////////////////
 // startGame()
@@ -305,12 +308,12 @@ const startGame = () => {
 }
 
 const $startButton = $('#start-button');
-const $dieRollButton = $('#dieRoll-button'); 
+const $dieRollButton = $('#playTurn-button'); 
 const $board = $('#game-board');
 
 // Event Listeners
 $startButton.on("click", startGame); 
-// $dieRollButton.on("click", dieRoll); 
+$dieRollButton.on("click", playTurn); 
 
 // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK //
 // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK //
@@ -537,14 +540,14 @@ $startButton.on("click", startGame);
         // Task 1 - COMPLETE!!!
 // Generate 10 boxes in a row
 // Create player object
-// Generate dieRoll
+// Generate playTurn
 // Move player 
 
 // Task 2 - COMPLETE!!!
 // Generate Full Board
 // Give genBoard function to Start Game button
 // Create new button called roll
-// Give genRandNum & move call statement to roll button
+// Give rollDie & move call statement to roll button
 // Test if you can roll multiple times along the full board
 // Don't worry about format of board until next task
 
