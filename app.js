@@ -32,22 +32,53 @@ class Player {
         console.log(`New position is ${this.currentPos}`)
         
         // Add player to new position 
-        $('.player').eq(indexNum).appendTo(`#${this.currentPos}`);
+        // $('.player').eq(indexNum).appendTo(`#${this.currentPos}`);
+        $(`#${currentPlayer.name}`).appendTo(`#${this.currentPos}`)
+        console.log(`I just moved ${currentPlayer.name} to ${this.currentPos}`);
     }
     //climb(ladder) - make dynamic
-    climb(){
+    climb(currentLadder){
+        
+        const ladderStart = [1, 4, 9, 21, 28, 36, 51, 71, 80];
+        const ladderEnd = [38, 14, 31, 42, 84, 44, 67, 91, 100];
+        
         console.log('player climbs ladder');
         // Hard coded value for now  
-        this.currentPos += 10; 
+        // this.currentPos += 10; 
 
+        console.log(`${currentPlayer.name} about to climb from ${ladderStart[currentLadder]} to ${ladderEnd[currentLadder]}`); 
+        this.currentPos = ladderEnd[currentLadder]; 
+       
         console.log(`New position is ${this.currentPos}`)
         // append playerImg to current pos
-        $('.player').eq(indexNum).appendTo(`#${this.currentPos}`);
+        console.log(`this is currentPlayer about to climb ${currentPlayer.name}`)
+        // $('.player').eq(indexNum).appendTo(`#${this.currentPos}`);
+        $(`#${currentPlayer.name}`).appendTo(`#${this.currentPos}`)
+        console.log(`I just moved ${currentPlayer.name} to ${this.currentPos}`);
         }        
-    fall(chute){
-        console.log('player falls down chute'); 
+    fall(currentChute){
+
+        const chuteStart = [16, 47, 49, 56, 62, 64, 93, 95, 98];
+        const chuteEnd = [6, 26, 11, 53, 19, 60, 73, 75, 78]; 
+
+        console.log('player falls down chute');
+        // Hard coded value for now  
+        // this.currentPos -= 10; 
+
+        console.log(`${currentPlayer.name} about to fall from ${chuteStart[currentChute]} to ${chuteEnd[currentChute]}`); 
+        this.currentPos = chuteEnd[currentChute]; 
+       
+        console.log(`New position is ${this.currentPos}`)
+        // append playerImg to current pos
+        console.log(`this is currentPlayer about to fall ${currentPlayer.name}`)
+        // $('.player').eq(indexNum).appendTo(`#${this.currentPos}`);
+        $(`#${currentPlayer.name}`).appendTo(`#${this.currentPos}`)
+        console.log(`I just moved ${currentPlayer.name} to ${this.currentPos}`);
+ 
     }
 }
+
+
 // const player1 = new Player('Player 1', 0);  
 // console.log(player1); 
 ///////////////
@@ -179,10 +210,14 @@ const genBoard = () => {
 const playMaker = new PlayerFactory('customNumPlayers')
 console.log(playMaker);
 console.log(playMaker.players);  
+let $playerArray = []; 
+
+let userChoiceGlobal = 0; 
 
 const setPlayers = () => {
     const $userChoiceNumPlayers = prompt('How many players?'); 
     // let $playerImg = $(`<img class="player" src=${this.playerImgSrc} alt="pawn image">`) 
+    userChoiceGlobal = $userChoiceNumPlayers; 
 
     // const playMaker = new PlayerFactory('customNumPlayers')
     console.log('this is playMaker');
@@ -199,12 +234,19 @@ const setPlayers = () => {
         playMaker.genPlayer(`player${i + 1}`, `${playerColors[i]}`, `${playerImgSourceArr[i]}`); 
 
         // Place image in starting area
-        let $playerImg = $(`<img class="player" src=${playerImgSourceArr[i]} alt="pawn image">`)
+        let $playerImg = $(`<img id="player${i+1}" class="player" src=${playerImgSourceArr[i]} alt="pawn image">`)
         $playerImg.appendTo(`#spot${i}`);  
     }
     // console.log('this is playmaker third time'); 
     // console.log(playMaker);
+    
+    $playerArray = $('.player')    //.children();  
+    console.log('this is playerArray'); 
+    console.log($playerArray); 
 
+    //set index for when switchturn runs
+    highestIndex = $playerArray.length; 
+    console.log(`this is highest ${highestIndex}`); 
 }
     // Place in starting area
     // let $playerImg = $(`<img class="player" src=${this.playerImgSrc} alt="pawn image">`)   
@@ -216,15 +258,26 @@ const setPlayers = () => {
 ////////////////////
 // START SWITCHTURN()
 ////////////////////
-const $playerArray = $('.player').children();  
-console.log('this is playerArray'); 
-console.log($playerArray); 
+// const $playerArray = $('.player').children();  
+// console.log('this is playerArray'); 
+// console.log($playerArray); 
 let indexNum = 0; 
-const highestIndex = $playerArray.length -1; 
-
+let highestIndex = 0; 
+console.log(`global choice ${userChoiceGlobal}`); 
 const switchTurn = () => {
     console.log(`switchTurn just called - indexNum is ${indexNum}`); 
-    if (indexNum < highestIndex){
+    // highestIndex = $playerArray.length; 
+    console.log(`highest index again ${highestIndex}`)
+    
+    // if (indexNum === highestIndex){
+    //     indexNum = 0; 
+    // } else if (indexNum < highestIndex){
+    //     indexNum += 1; 
+    // } else {
+    //     console.log(`indexNum is ${indexNum}`)
+    // }
+    
+    if (indexNum < highestIndex -1){
         indexNum += 1; 
     } else {
         indexNum = 0; 
@@ -246,20 +299,24 @@ const checkFallOrClimb = () => {
     const ladderStartPoints = [1, 4, 9, 21, 28, 36, 51, 71, 80]; 
     const chuteStartPoints = [16, 47, 49, 56, 62, 64, 93, 95, 98]; 
 
-    const checkClimb = (startPoint => startPoint === playMaker.players[indexNum].currentPos);
+    // const checkClimb = (startPoint => startPoint === playMaker.players[indexNum].currentPos);
+    const checkClimb = (startPoint => startPoint === currentPlayer.currentPos);
     let climbTime = ladderStartPoints.findIndex(checkClimb);
     if (climbTime >= 0){
         console.log(`time to climb ladder${climbTime + 1}`);
-        playMaker.players[indexNum].climb(); 
+        // playMaker.players[indexNum].climb();
+        currentPlayer.climb(climbTime);   
     } else {
         console.log('no ladders, check for chutes'); 
     }
 
-    const checkFall = (startPoint => startPoint === playMaker.players[indexNum].currentPos); 
+    // const checkFall = (startPoint => startPoint === playMaker.players[indexNum].currentPos); 
+    const checkFall = (startPoint => startPoint === currentPlayer.currentPos); 
     let fallTime = chuteStartPoints.findIndex(checkFall); 
     if (fallTime >= 0){
         console.log(`time to fall down chute${fallTime + 1}`); 
-        playMaker.players[indexNum].fall();
+        // playMaker.players[indexNum].fall();
+        currentPlayer.fall(fallTime);  
     } else {
         console.log(`no chutes, next player's turn!`); 
     }
@@ -284,16 +341,34 @@ const rollDie = () => {
 ////////////////////
 // playTurn()
 ////////////////////
+let currentPlayer = 0; 
 const playTurn = () => {
     console.log('this is playMaker');
     console.log(playMaker);
     console.log(indexNum); 
-    let currentPlayer = playMaker.players[indexNum];
-    console.log(currentPlayer);  
+    console.log(`this is highest ${highestIndex}`)
+
+    // let currentPlayer = 0; 
+
+    // if (indexNum === highestIndex){
+    // //    indexNum = 0;
+    //     let indexNumTemp = 0;  
+    //     currentPlayer = playMaker.players[indexNumTemp]; 
+    // } else {
+        currentPlayer = playMaker.players[indexNum];
+        console.log(currentPlayer);  
+    // }
+
+    console.log(currentPlayer); 
 
     rollDie(); 
+    console.log(`about to run currentPlayer.move(), currentPlayer is ${currentPlayer.name}`)
     currentPlayer.move();  
+    
+    console.log(`about to run checkFallOrClimb, currentPlayer is ${currentPlayer.name}`)
     checkFallOrClimb(); 
+    
+    console.log(`about to run switchTurn, currentPlayer is ${currentPlayer.name}`)
     switchTurn();  
 }
 
