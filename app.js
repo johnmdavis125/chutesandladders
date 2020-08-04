@@ -35,8 +35,10 @@ class Player {
         // $('.player').eq(indexNum).appendTo(`#${this.currentPos}`);
         $(`#${currentPlayer.name}`).appendTo(`#${this.currentPos}`)
         console.log(`I just moved ${currentPlayer.name} to ${this.currentPos}`);
+
+        checkWin(); 
     }
-    //climb(ladder) - make dynamic
+    //climb(ladder) - make dynamic 
     climb(currentLadder){
         
         const ladderStart = [1, 4, 9, 21, 28, 36, 51, 71, 80];
@@ -55,6 +57,8 @@ class Player {
         // $('.player').eq(indexNum).appendTo(`#${this.currentPos}`);
         $(`#${currentPlayer.name}`).appendTo(`#${this.currentPos}`)
         console.log(`I just moved ${currentPlayer.name} to ${this.currentPos}`);
+
+            checkWin(); 
         }        
     fall(currentChute){
 
@@ -255,6 +259,27 @@ const setPlayers = () => {
 // END SETPLAYERS()
 //////////////////////////
 
+//////////////////////////
+// START CHECKWIN()
+//////////////////////////
+
+const checkWin = () => {
+    console.log('did I win?'); 
+    console.log(currentPlayer); 
+
+    if (currentPlayer.currentPos < 100){
+        console.log(`Keep movin ${currentPlayer.name}, not there yet`)
+    } else {
+        console.log(`${currentPlayer.name} wins!`)
+        alert(`${currentPlayer.name} wins!`)
+    }
+}
+
+//////////////////////////
+// END CHECKWIN()
+//////////////////////////
+
+
 ////////////////////
 // START SWITCHTURN()
 ////////////////////
@@ -348,20 +373,11 @@ const playTurn = () => {
     console.log(indexNum); 
     console.log(`this is highest ${highestIndex}`)
 
-    // let currentPlayer = 0; 
-
-    // if (indexNum === highestIndex){
-    // //    indexNum = 0;
-    //     let indexNumTemp = 0;  
-    //     currentPlayer = playMaker.players[indexNumTemp]; 
-    // } else {
-        currentPlayer = playMaker.players[indexNum];
-        console.log(currentPlayer);  
-    // }
-
-    console.log(currentPlayer); 
+    currentPlayer = playMaker.players[indexNum];
+    console.log(currentPlayer);  
 
     rollDie(); 
+
     console.log(`about to run currentPlayer.move(), currentPlayer is ${currentPlayer.name}`)
     currentPlayer.move();  
     
@@ -641,13 +657,13 @@ $dieRollButton.on("click", playTurn);
 // Create a test ladder
 // Add checkFallorClimb() to rollDie function
 
-// Task 6 - Working
+// Task 6 - COMPLETE!!!
 // Create player factory
     // write func genPlayers(user selects 'numPlayers')
     // Create instance
         // store players in an array which can be accessed via object.dotNotation[index]
  
-// Task 7 - Not started
+// Task 8 - COMPLETE!!!
 // Make ladders dynamic
 // Make ladder factory
 // create instance of factory
@@ -656,6 +672,24 @@ $dieRollButton.on("click", playTurn);
 // ladders will be an array of objects
 // add chutes
 
-// Task 8 - Not started
+// Task 7 - COMPLETE!!!
 // Make numPlayers dynamic
     // Prompt user - store & manipulate value
+
+// Task 9 - COMPLETE!!!
+// Build Win State
+
+// Task 10 - Not started
+// Modal
+
+// Task 11 - Not started 
+// Ask for user name
+    // Display user name
+
+// Animations
+// Styling
+// Build demo button - runs through 50 rolls
+// Add win state to logic
+// Display current players turn
+// Ask for user name
+// Allow user to select player image
