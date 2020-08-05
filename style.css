@@ -306,6 +306,7 @@ h1 {
     align-items: center;
     border: 1px solid rgb(29, 94, 131);
     font-size: 50px; 
+    background-color: white;
 }
 
 #title {
@@ -326,17 +327,23 @@ h1 {
 }
 
 #topDisplay {
-    background-color: rgb(222, 228, 235);
+    /* background-color: rgb(222, 228, 235); */
     justify-content: space-evenly;
     align-items: center;
     box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.4);
     border-radius: 10px;
 }
 
-#topDisplay > div,ul,li,button {
+/* #topDisplay > div, button {
     background-color: rgb(222, 228, 235);
     /* border: 1px solid rgb(29, 94, 131);  */
 
+#scoreboardBlock {
+    color: rgb(185, 188, 191); 
+}
+
+button {
+    background-color: rgb(185, 188, 191);    
 }
 
 #imageContainer {
@@ -347,6 +354,11 @@ h1 {
 
 #scoresList {
     list-style-type: none;
+    justify-content: center;
+}
+
+#scoreboard {
+    justify-content: center;
 }
 
 #navButtons {
@@ -356,6 +368,8 @@ h1 {
 #bottomSection {
     justify-content: center;
     align-items: center;
+    border-radius: 2px;
+    box-shadow: 2px 2px 25px rgba(0, 0, 0, 0.4);
 }
 
 #playTurn-button {
@@ -382,7 +396,7 @@ h1 {
 }
 
 .rollDisplay {
-    background-color: rgb(252, 252, 252);
+    background-color: white;
 }
 #rollNumber {
     height: 50px;

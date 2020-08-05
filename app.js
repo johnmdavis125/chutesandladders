@@ -611,7 +611,7 @@ $submitButton1.on("click", closeModal2);
 $submitButton2.on("click", closeModal3); 
 $closeModal4Button.on("click", closeModal4); 
 $closeModal1Button.on("click", closeModal1); 
-setup(); 
+// setup(); 
 
 // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK //
 // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK //
@@ -918,7 +918,7 @@ setup();
 // De-bug - change in # players 
 
 
-// land by exact count???
+
 // select better player images
 // Animations
 // Allow user to select player image
@@ -940,3 +940,4 @@ setup();
     // Make board grid 10% width of board container instead of 100px - responsive?
     // House functions in objects??
     // Put functions into separate js file? 
+    // land by exact count???
