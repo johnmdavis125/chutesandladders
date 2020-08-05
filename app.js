@@ -76,24 +76,26 @@ const genModal3 = () => {
     openModal3(); 
 }
 
+$namesArray = []; 
 const displayPlayerNames = () => {
-    console.log($('.playerNames')); 
-
-    let $player1Name = $('#player1Name').val(); 
+ 
+    let $player1Name = $('#player1Name').val();
+    $namesArray.push($player1Name); 
     let $player2Name = $('#player2Name').val(); 
-    console.log($player1Name); 
-    console.log($player2Name); 
+    $namesArray.push($player2Name); 
 
     if ($userChoiceNumPlayers === 3){
         let $player3Name = $('#player3Name').val(); 
-        console.log($player3Name); 
+        $namesArray.push($player3Name);  
 
     } else if ($userChoiceNumPlayers === 4){
         let $player3Name = $('#player3Name').val(); 
+        $namesArray.push($player3Name);  
         let $player4Name = $('#player4Name').val(); 
-        console.log($player3Name); 
-        console.log($player4Name); 
+        $namesArray.push($player4Name);
     }
+    $('#currentPlayerDisplay').text(`${$player1Name}'s turn!`);
+   startGame(); 
 }
 
 
@@ -392,13 +394,16 @@ const switchTurn = () => {
     // } else {
     //     console.log(`indexNum is ${indexNum}`)
     // }
-    
     if (indexNum < highestIndex -1){
         indexNum += 1; 
     } else {
         indexNum = 0; 
     }
         console.log(`switchTurn just ran - indexNum is ${indexNum}`); 
+
+    // display next players turn 
+    $('#currentPlayerDisplay').text(`${$namesArray[indexNum]}'s turn!`);
+
 }
 ////////////////////
 // END SWITCHTURN()
@@ -792,8 +797,10 @@ setup();
 // Task 12 - COMPLETE!!!
 // De-bug - modal1 not re-opening after game start
 
-// Task 13 - Working
-// Ask for player names
+// Task 13 - COMPLETE!!!
+// Get player Names
+    //Add modal 3 and all associated ftns
+    //Added current player display to DOM
 
 // Animations
 // Styling

@@ -225,3 +225,12 @@ h1 {
     flex-direction: column;
     justify-content: space-between;
 }
+
+#currentPlayerDisplay {
+    height: 100px; 
+    width: 400px;
+    background-color: silver;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
