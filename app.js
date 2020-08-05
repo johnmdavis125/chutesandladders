@@ -29,6 +29,12 @@ const closeModal3 = () => {
     displayPlayerNames(); 
 }
 
+const closeModal4 = () => {
+    $('#modal4').css('display', 'none'); 
+    console.log('close modal4')
+    setup();  
+}
+
 const openModal1 = () => {
     $('#modal1').css('display', 'flex');
     $('#modal1Main').css('justify-content', 'center');
@@ -98,6 +104,11 @@ const displayPlayerNames = () => {
    startGame(); 
 }
 
+const openModal4 = () => {
+    $('#modal4').css('display', 'flex');
+    $('#modal4Main').css('justify-content', 'center');
+    console.log('open modal4'); 
+}
 
 // <input type="text" id="player2Name" class="playerNames">
 // <label for="player2Name">3 Player Game</label>
@@ -364,10 +375,32 @@ const checkWin = () => {
         console.log(`Keep movin ${currentPlayer.name}, not there yet`)
     } else {
         console.log(`${currentPlayer.name} wins!`)
-        alert(`${currentPlayer.name} wins!`)
+        
+        // update modal 4
+        $('#winnerH1').text(`Congratulations! This game's winner is ${$namesArray[indexNum]}`)
+
+        //Update Scoreboard
+        let player1wins = 0; 
+        let player2wins = 0; 
+        let player3wins = 0; 
+        let player4wins = 0; 
+        if (indexNum === 0){
+            player1wins += 1; 
+            $('#player1wins').text(`Player 1 Wins: ${player1wins}`)
+        } else if (indexNum === 1){
+            player2wins += 1; 
+            $('#player2wins').text(`Player 2 Wins: ${player2wins}`)
+        } else if (indexNum === 2){
+            player3wins += 1; 
+            $('#player3wins').text(`Player 3 Wins: ${player3wins}`)
+        } else {
+            player4wins += 1; 
+            $('#player4wins').text(`Player 2 Wins: ${player2wins}`)
+        }    
+        //Congratulate!
+        openModal4(); 
     }
 }
-
 //////////////////////////
 // END CHECKWIN()
 //////////////////////////
@@ -502,6 +535,7 @@ const $openModal1Button = $('#openModal1-button');
 const $closeModal1Button = $('#closeModal1-button'); 
 const $submitButton1 = $('#submitNumPlayers'); 
 const $submitButton2 = $('#submitPlayerNames'); 
+const $closeModal4Button = $('#closeModal4-button'); 
 const $board = $('#game-board');
 
 // Event Listeners
@@ -511,7 +545,7 @@ $openModal1Button.on("click", openModal1);
 $closeModal1Button.on("click", closeModal1); 
 $submitButton1.on("click", closeModal2); 
 $submitButton2.on("click", closeModal3); 
-
+$closeModal4Button.on("click", closeModal4); 
 setup(); 
 
 // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK //
@@ -802,23 +836,20 @@ setup();
     //Add modal 3 and all associated ftns
     //Added current player display to DOM
 
-// Task 14 - Working
+// Task 14 - COMPLETE!!!
 // spruce up the UI
 
-// Task 15 - Not started
+// Task 15 - Working
 // Change win state alert to a modal
 
 
 // double check clicking on how to play doesn't ask for setting players again
     // should be fine! - except in demo mode - fix???
-// deploy!
 // Add prompt for play again at end of the game!***
 // Animations
-// Styling
 // Build demo button - runs through 50 rolls
-// Display current players turn
-// Ask for user name
 // Allow user to select player image
+// Finish styling
 
 // CLEANUP
     // should I have been putting 'event' as parameter in the event listeners/handlers?
