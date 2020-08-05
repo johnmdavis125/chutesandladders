@@ -128,7 +128,7 @@ body {
 }
 
 #waitingArea {
-    background-color: teal;
+    background-color: rgb(29, 94, 131);
     height: 100px; 
     width: 400px; 
     margin: 10px; 
@@ -150,7 +150,7 @@ body {
 .playerSeat {
     height: 80px; 
     width: 80px; 
-    background-color: turquoise;
+    background-color: rgb(206, 213, 228);
     display: flex; 
     justify-content: center;
 }
@@ -185,7 +185,7 @@ body {
 #modal1TextBox {
     /* background-color: rgba(255,255,255,1);  */
     max-width: 1400px;
-    height: 60%;
+    height: 40%;
     width: 60%;
     box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
     z-index: 3;
