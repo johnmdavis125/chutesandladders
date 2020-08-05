@@ -152,7 +152,7 @@ body {
     justify-content: center;
 }
 
-#modal {
+#modal1 {
     background-color: rgba(0,0,0,0.4); 
     position: fixed;
     top: 0;
@@ -160,17 +160,43 @@ body {
     height: 100%;
     width: 100%;
     z-index: 3;
-    display: none; 
+    display: none;  
 }
 
-#modalTextBox {
+#modal2 {
+    background-color: rgba(0,0,0,0.4); 
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 3;
+    display: none;  
+}
+
+#modal1TextBox {
     /* background-color: rgba(255,255,255,1);  */
     max-width: 1400px;
     height: 60%;
     width: 60%;
     box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
     z-index: 3;
-    margin: auto; 
+    margin: 10% auto auto auto; 
+    padding: 20px; 
+    display: flex;
+    flex-direction: column; 
+    border-radius: 25px;
+    overflow: auto; 
+}
+
+#modal2TextBox {
+    /* background-color: rgba(255,255,255,1);  */
+    max-width: 1400px;
+    height: 60%;
+    width: 60%;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+    z-index: 3;
+    margin: 10% auto auto auto; 
     padding: 20px; 
     display: flex;
     flex-direction: column; 
@@ -186,6 +212,6 @@ h1 {
     background-color: rgb(216, 207, 207);
 }
 
-#closeModal-button {
+#closeModal1-button {
     max-width: 100px;
 }

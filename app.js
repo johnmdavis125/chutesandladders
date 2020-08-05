@@ -1,16 +1,55 @@
 console.log($); 
+let onlyChoosePlayersOnce = 0; 
+let $userChoiceNumPlayers = 0; 
 
-const closeModal = () => {
-    $('#modal').css('display', 'none'); 
-    console.log('close modal')
-}
-const openModal = () => {
-    $('#modal').css('display', 'flex');
-    $('#modalMain').css('justifty-content', 'center');
-     
-    console.log('open modal'); 
+const closeModal1 = () => {
+    $('#modal1').css('display', 'none'); 
+    console.log('close modal1')
+
+    console.log(`onlyChoosePlayersOnce is ${onlyChoosePlayersOnce}`); 
+    if (onlyChoosePlayersOnce === 0){
+        onlyChoosePlayersOnce += 1; 
+        console.log(`onlyChoosePlayerOnce is ${onlyChoosePlayersOnce}`)
+        console.log('running openModal2')
+        openModal2(); 
+    }
 }
 
+const closeModal2 = () => {
+    $('#modal2').css('display', 'none'); 
+    console.log('close modal2')
+    event.preventDefault(); 
+    takeUserInput(); 
+}
+
+
+const openModal1 = () => {
+    $('#modal1').css('display', 'flex');
+    $('#modal1Main').css('justify-content', 'center');
+    console.log('open modal1'); 
+}
+
+const openModal2 = () => {
+    $('#modal2').css('display', 'flex');
+    $('#modal2Main').css('justify-content', 'center');
+    console.log('open modal2'); 
+}
+
+const takeUserInput = () => {
+    const $radioArr = $('.players'); 
+    console.log($radioArr); 
+
+    if ($radioArr[0].checked){
+        $userChoiceNumPlayers = 2; 
+    } else if ($radioArr[1].checked){
+        $userChoiceNumPlayers = 3; 
+    } else if ($radioArr[2].checked){
+        $userChoiceNumPlayers = 4; 
+    }
+
+    startGame(); 
+    // console.log($userChoiceNumPlayers); 
+}
 
 ///////////////////
 // PLAYER CLASS
@@ -206,7 +245,7 @@ const genBoard = () => {
     $img.appendTo('#game-board');
     // $img.css('left', '100px');  
 
-    // prompt with modal HERE // 
+    // prompt with modal1 HERE // 
 } 
 ////////////////////
 // END GENBOARD()
@@ -219,12 +258,12 @@ console.log(playMaker);
 console.log(playMaker.players);  
 let $playerArray = []; 
 
-let userChoiceGlobal = 0; 
+// let userChoiceGlobal = 0; 
 
 const setPlayers = () => {
-    const $userChoiceNumPlayers = prompt('How many players?'); 
+    // const $userChoiceNumPlayers = prompt('How many players?'); 
     // let $playerImg = $(`<img class="player" src=${this.playerImgSrc} alt="pawn image">`) 
-    userChoiceGlobal = $userChoiceNumPlayers; 
+    // userChoiceGlobal = $userChoiceNumPlayers; 
 
     // const playMaker = new PlayerFactory('customNumPlayers')
     console.log('this is playMaker');
@@ -291,7 +330,7 @@ const checkWin = () => {
 // console.log($playerArray); 
 let indexNum = 0; 
 let highestIndex = 0; 
-console.log(`global choice ${userChoiceGlobal}`); 
+// console.log(`global choice ${userChoiceGlobal}`); 
 const switchTurn = () => {
     console.log(`switchTurn just called - indexNum is ${indexNum}`); 
     // highestIndex = $playerArray.length; 
@@ -394,24 +433,30 @@ const playTurn = () => {
 ////////////////////
 // startGame()
 ////////////////////
+const setup = () => {
+    openModal1();   
+}
+
 const startGame = () => {
-    //modal
-    //prompts
     genBoard();
     setPlayers();  
 }
 
 const $startButton = $('#start-button');
 const $dieRollButton = $('#playTurn-button'); 
-const $openModalButton = $('#openModal-button'); 
-const $closeModalButton = $('#closeModal-button'); 
+const $openModalButton = $('#openModal1-button'); 
+const $closeModalButton = $('#closeModal1-button'); 
+const $submitButton = $('#submitNumPlayers'); 
 const $board = $('#game-board');
 
 // Event Listeners
 $startButton.on("click", startGame); 
 $dieRollButton.on("click", playTurn); 
-$openModalButton.on("click", openModal); 
-$closeModalButton.on("click", closeModal); 
+$openModalButton.on("click", openModal1); 
+$closeModalButton.on("click", closeModal1); 
+$submitButton.on("click", closeModal2); 
+
+setup(); 
 
 // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK //
 // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK //
@@ -686,10 +731,10 @@ $closeModalButton.on("click", closeModal);
 // Task 9 - COMPLETE!!!
 // Build Win State
 
-// Task 10 - Working
+// Task 10 - COMPLETE!!!
 // Modal
 
-// Task 11 - Not started 
+// Task 11 - Working 
 // Ask for user name
     // Display user name
 

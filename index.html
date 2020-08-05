@@ -8,14 +8,37 @@
 </head>
 <body>
 
-<div id="modal">
-  <div id="modalTextBox" class="modal">
+<div id="modal1">
+  <div id="modal1TextBox" class="modal">
     <h1 class="modal">Welcome to Chutes & Ladders!</h1>
     <h3 class="modal">How to Play:</h3>
     <p class="modal">There are 100 squares on the board and 2-4 players. The number of spaces a player advances each turn is determined by rolling a die once per turn. If the player lands at the bottom of a ladder, they immediately climb to the top. If the player lands at the top of a chute, they immediately slide to the bottom. The win state is reached when a player lands exactly on square 100, at which point the other players lose. The game will continue until this happens.</p>
-    <button id='closeModal-button' class="modal">Close</button>
+    <button id='closeModal1-button' class="modal">Close</button>
   </div>
 </div>  
+
+<div id="modal2">
+  <div id="modal2TextBox" class="modal">
+    <h1 class="modal">Welcome to Chutes & Ladders!</h1>
+    <h3 class="modal">Select the number of players</h3>
+    <form class="modal">
+      <div id="radioContainer">
+        <input type="radio" id="2player" class="players" value="2" checked>
+        <label for="2player">2 Player Game</label>
+        
+        <input type="radio" id="3player" class="players" value="3">
+        <label for="3player">3 Player Game</label>
+        
+        <input type="radio" id="4player" class="players" value="4">
+        <label for="4player">4 Player Game</label>
+      </div>
+      <button type="submit" id="submitNumPlayers">Submit</button>
+    </form>
+    <!-- <button id='closeModal-button' class="modal">Close</button> -->
+  </div>
+</div>  
+
+
 
 <div id="game-board">
   <img id="backgroundImage" src="Images/chutes and ladders board.jpg" alt="game board image">
@@ -28,7 +51,7 @@
   <div id='spot3' class="playerSeat"></div>
 </div>
 
-<button id='start-button'>Start Game</button>
+<!-- <button id='start-button'>Start Game</button> -->
 <button id='playTurn-button'>Roll</button>
 <button id='openModal-button'>?</button>
 
