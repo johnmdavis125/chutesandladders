@@ -8,30 +8,29 @@
 </head>
 <body>
 
-
-
-<button id='start-button'>Start Game</button>
-<button id='playTurn-button'>Roll</button>
-
-
-
+<div id="modal">
+  <div id="modalTextBox" class="modal">
+    <h1 class="modal">Welcome to Chutes & Ladders!</h1>
+    <h3 class="modal">How to Play:</h3>
+    <p class="modal">There are 100 squares on the board and 2-4 players. The number of spaces a player advances each turn is determined by rolling a die once per turn. If the player lands at the bottom of a ladder, they immediately climb to the top. If the player lands at the top of a chute, they immediately slide to the bottom. The win state is reached when a player lands exactly on square 100, at which point the other players lose. The game will continue until this happens.</p>
+    <button id='closeModal-button' class="modal">Close</button>
+  </div>
+</div>  
 
 <div id="game-board">
-  <!-- <img id="backgroundImage" src="Images/chutes and ladders board.jpg" alt="game board image"> -->
-
-  <!-- <div id="test"></div> -->
-
+  <img id="backgroundImage" src="Images/chutes and ladders board.jpg" alt="game board image">
 </div>
 
 <div id="waitingArea">
-
   <div id='spot0' class="playerSeat"></div>
   <div id='spot1' class="playerSeat"></div>
   <div id='spot2' class="playerSeat"></div>
   <div id='spot3' class="playerSeat"></div>
-
 </div>
 
+<button id='start-button'>Start Game</button>
+<button id='playTurn-button'>Roll</button>
+<button id='openModal-button'>?</button>
 
     <script
     src="https://code.jquery.com/jquery-3.5.1.min.js"

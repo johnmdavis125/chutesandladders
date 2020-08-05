@@ -7,7 +7,7 @@
 
 Chutes & Ladders is a classic boardgame I grew up with as a kid. 
 
-There are 100 squares on the board and 2+ players. The number of spaces the player advances each turn is determined by rolling a die once per turn. If the player lands at the bottom of a ladder, they immediately climb to the top. If the child lands at the top of a chute, they immediately slide to the bottom. The win state is reached when a player lands exactly on square 100, at which point the other player loses. The game will continue until this 
+There are 100 squares on the board and 2+ players. The number of spaces the player advances each turn is determined by rolling a die once per turn. If the player lands at the bottom of a ladder, they immediately climb to the top. If the player lands at the top of a chute, they immediately slide to the bottom. The win state is reached when a player lands exactly on square 100, at which point the other player loses. The game will continue until this 
 happens.  
 
 /////////////////////

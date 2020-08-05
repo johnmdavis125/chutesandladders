@@ -1,13 +1,16 @@
 console.log($); 
 
-//Hard code user's choice for now
-// const $userChoiceNumPlayers = 4; 
-// const $userChoiceNumPlayers = 3; 
-// const $userChoiceNumPlayers = 2; 
-// const $userChoiceNumPlayers = 1; 
+const closeModal = () => {
+    $('#modal').css('display', 'none'); 
+    console.log('close modal')
+}
+const openModal = () => {
+    $('#modal').css('display', 'flex');
+    $('#modalMain').css('justifty-content', 'center');
+     
+    console.log('open modal'); 
+}
 
-// get user input
-// set images in waiting area div - then move from there
 
 ///////////////////
 // PLAYER CLASS
@@ -400,11 +403,15 @@ const startGame = () => {
 
 const $startButton = $('#start-button');
 const $dieRollButton = $('#playTurn-button'); 
+const $openModalButton = $('#openModal-button'); 
+const $closeModalButton = $('#closeModal-button'); 
 const $board = $('#game-board');
 
 // Event Listeners
 $startButton.on("click", startGame); 
 $dieRollButton.on("click", playTurn); 
+$openModalButton.on("click", openModal); 
+$closeModalButton.on("click", closeModal); 
 
 // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK //
 // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK //
@@ -679,7 +686,7 @@ $dieRollButton.on("click", playTurn);
 // Task 9 - COMPLETE!!!
 // Build Win State
 
-// Task 10 - Not started
+// Task 10 - Working
 // Modal
 
 // Task 11 - Not started 
@@ -687,9 +694,12 @@ $dieRollButton.on("click", playTurn);
     // Display user name
 
 // Animations
+// Functionally limit user inputs, include prompts/alerts
 // Styling
 // Build demo button - runs through 50 rolls
 // Add win state to logic
 // Display current players turn
 // Ask for user name
 // Allow user to select player image
+// single or double quotes - pick one
+// consistent ID/var names (dashes, underscores, etc.)
