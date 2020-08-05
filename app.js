@@ -450,7 +450,7 @@ const $submitButton = $('#submitNumPlayers');
 const $board = $('#game-board');
 
 // Event Listeners
-$startButton.on("click", startGame); 
+// $startButton.on("click", startGame); 
 $dieRollButton.on("click", playTurn); 
 $openModalButton.on("click", openModal1); 
 $closeModalButton.on("click", closeModal1); 
