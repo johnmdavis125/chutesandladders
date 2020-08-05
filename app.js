@@ -611,7 +611,7 @@ $submitButton1.on("click", closeModal2);
 $submitButton2.on("click", closeModal3); 
 $closeModal4Button.on("click", closeModal4); 
 $closeModal1Button.on("click", closeModal1); 
-// setup(); 
+setup(); 
 
 // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK //
 // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK //
