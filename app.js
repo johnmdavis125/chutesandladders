@@ -144,6 +144,8 @@ const closeModal4 = () => {
         playMaker.players[i].currentPos = 0; 
         console.log(`${playMaker.players[i].name}'s position is reset to ${playMaker.players[i].currentPos}`);
     }
+    $('#currentPlayerDisplay').text(''); 
+    $('#rollNumber').text(''); 
     indexNum = 0;  
     $namesArray = []; 
     $playerArray = []; 
@@ -154,6 +156,7 @@ const closeModal4 = () => {
     randNum = 0; 
     currentPlayer = 0; 
     $userChoiceNumPlayers = 0;
+    playMaker.players = []; 
     //start next round
     event.preventDefault(); 
     openModal1();  
