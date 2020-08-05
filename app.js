@@ -442,18 +442,18 @@ const startGame = () => {
     setPlayers();  
 }
 
-const $startButton = $('#start-button');
+// const $startButton = $('#start-button');
 const $dieRollButton = $('#playTurn-button'); 
-const $openModalButton = $('#openModal1-button'); 
-const $closeModalButton = $('#closeModal1-button'); 
+const $openModal1Button = $('#openModal1-button'); 
+const $closeModal1Button = $('#closeModal1-button'); 
 const $submitButton = $('#submitNumPlayers'); 
 const $board = $('#game-board');
 
 // Event Listeners
 // $startButton.on("click", startGame); 
 $dieRollButton.on("click", playTurn); 
-$openModalButton.on("click", openModal1); 
-$closeModalButton.on("click", closeModal1); 
+$openModal1Button.on("click", openModal1); 
+$closeModal1Button.on("click", closeModal1); 
 $submitButton.on("click", closeModal2); 
 
 setup(); 
@@ -732,19 +732,34 @@ setup();
 // Build Win State
 
 // Task 10 - COMPLETE!!!
-// Modal
+// Modal - intro
 
-// Task 11 - Working 
-// Ask for user name
-    // Display user name
+// Task 11 - COMPLETE!!!
+// Modal - user enters # players
+// Functionally limit user inputs, include prompts/alerts
+
+// Task 12 - Working
+// De-bug - modal1 not re-opening after game start
+
+// Task 13 - Not started
+//
 
 // Animations
-// Functionally limit user inputs, include prompts/alerts
 // Styling
 // Build demo button - runs through 50 rolls
-// Add win state to logic
 // Display current players turn
 // Ask for user name
 // Allow user to select player image
-// single or double quotes - pick one
-// consistent ID/var names (dashes, underscores, etc.)
+
+// CLEANUP
+    // check on legal restrictions for using board image????
+        // Add disclaimer statement? 
+    // single or double quotes - pick one
+    // consistent ID/var names (dashes, underscores, etc.)
+    // Indentation & spacing
+    // Descriptive Comments
+    // No extraneous comments
+    // clean up console.log statements - make inuitive
+// RE-FACTOR
+    // toggle
+    // DRY??
