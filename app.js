@@ -19,9 +19,15 @@ const closeModal2 = () => {
     $('#modal2').css('display', 'none'); 
     console.log('close modal2')
     event.preventDefault(); 
-    takeUserInput(); 
+    getNumPlayers(); 
 }
 
+const closeModal3 = () => {
+    $('#modal3').css('display', 'none'); 
+    console.log('close modal3')
+    event.preventDefault(); 
+    displayPlayerNames(); 
+}
 
 const openModal1 = () => {
     $('#modal1').css('display', 'flex');
@@ -35,7 +41,13 @@ const openModal2 = () => {
     console.log('open modal2'); 
 }
 
-const takeUserInput = () => {
+const openModal3 = () => {
+    $('#modal3').css('display', 'flex');
+    $('#modal3Main').css('justify-content', 'center');
+    console.log('open modal3'); 
+}
+
+const getNumPlayers = () => {
     const $radioArr = $('.players'); 
     console.log($radioArr); 
 
@@ -47,9 +59,46 @@ const takeUserInput = () => {
         $userChoiceNumPlayers = 4; 
     }
 
-    startGame(); 
+    genModal3(); 
     // console.log($userChoiceNumPlayers); 
 }
+
+const genModal3 = () => {
+    for (let i = 2; i < $userChoiceNumPlayers; i++){
+        // generate form input element
+        const $newPlayerNameInput = $(`<input type="text" id="player${i+1}Name" class="playerNames">`)
+        const $newPlayerNameLabel = $(`<label for="player${i+1}Name" id="player${i+1}label">Player ${i+1} Name</label>`)
+        // append to form > div container on modal 3
+        $($newPlayerNameLabel).appendTo('#nameContainer'); 
+        $($newPlayerNameInput).appendTo('#nameContainer'); 
+  
+    }
+    openModal3(); 
+}
+
+const displayPlayerNames = () => {
+    console.log($('.playerNames')); 
+
+    let $player1Name = $('#player1Name').val(); 
+    let $player2Name = $('#player2Name').val(); 
+    console.log($player1Name); 
+    console.log($player2Name); 
+
+    if ($userChoiceNumPlayers === 3){
+        let $player3Name = $('#player3Name').val(); 
+        console.log($player3Name); 
+
+    } else if ($userChoiceNumPlayers === 4){
+        let $player3Name = $('#player3Name').val(); 
+        let $player4Name = $('#player4Name').val(); 
+        console.log($player3Name); 
+        console.log($player4Name); 
+    }
+}
+
+
+// <input type="text" id="player2Name" class="playerNames">
+// <label for="player2Name">3 Player Game</label>
 
 ///////////////////
 // PLAYER CLASS
@@ -446,7 +495,8 @@ const startGame = () => {
 const $dieRollButton = $('#playTurn-button'); 
 const $openModal1Button = $('#openModal1-button'); 
 const $closeModal1Button = $('#closeModal1-button'); 
-const $submitButton = $('#submitNumPlayers'); 
+const $submitButton1 = $('#submitNumPlayers'); 
+const $submitButton2 = $('#submitPlayerNames'); 
 const $board = $('#game-board');
 
 // Event Listeners
@@ -454,7 +504,8 @@ const $board = $('#game-board');
 $dieRollButton.on("click", playTurn); 
 $openModal1Button.on("click", openModal1); 
 $closeModal1Button.on("click", closeModal1); 
-$submitButton.on("click", closeModal2); 
+$submitButton1.on("click", closeModal2); 
+$submitButton2.on("click", closeModal3); 
 
 setup(); 
 
@@ -738,11 +789,11 @@ setup();
 // Modal - user enters # players
 // Functionally limit user inputs, include prompts/alerts
 
-// Task 12 - Working
+// Task 12 - COMPLETE!!!
 // De-bug - modal1 not re-opening after game start
 
-// Task 13 - Not started
-//
+// Task 13 - Working
+// Ask for player names
 
 // Animations
 // Styling
@@ -752,6 +803,7 @@ setup();
 // Allow user to select player image
 
 // CLEANUP
+    // should I have been putting 'event' as parameter in the event listeners/handlers?
     // check on legal restrictions for using board image????
         // Add disclaimer statement? 
     // single or double quotes - pick one
