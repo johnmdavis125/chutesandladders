@@ -1,62 +1,60 @@
 console.log($); 
+let onlyChoosePlayersOnceInit = 0; 
 let onlyChoosePlayersOnce = 0; 
 let $userChoiceNumPlayers = 0; 
-
+// MODAL 1 INIT - Welcome (how to play)
+const openModal1Init = () => {
+    $('#modal1Init').css('display', 'flex');
+    $('#modal1InitMain').css('justify-content', 'center');
+    console.log('open modal1Init'); 
+}
+const closeModal1Init = () => {
+    $('#modal1Init').css('display', 'none'); 
+    console.log('close modal1Init')
+    // console.log(`onlyChoosePlayersOnceInit is ${onlyChoosePlayersOnceInit}`); 
+    // if (onlyChoosePlayersOnceInit === 0){
+    //     onlyChoosePlayersOnceInit += 1; 
+    //     console.log(`onlyChoosePlayerOnce is ${onlyChoosePlayersOnceInit}`)
+    //     console.log('running openModal2')
+        openModal2(); 
+}
+// MODAL 1 MID - Welcome (how to play)
+const openModal1Mid = () => {
+    $('#modal1Mid').css('display', 'flex'); 
+    $('#modal1Main').css('justify-content', 'center');
+    console.log('openModal1Mid') 
+}
+const closeModal1Mid = () => {
+    $('#modal1Mid').css('display', 'none'); 
+    console.log('close modal1Mid') 
+}
+// MODAL 1 - for future rounds - Welcome (how to play)
+const openModal1 = () => {
+    $('#modal1').css('display', 'flex');
+    $('#modal1Main').css('justify-content', 'center');
+    console.log('open modal1'); 
+}
 const closeModal1 = () => {
     $('#modal1').css('display', 'none'); 
     console.log('close modal1')
-
-    console.log(`onlyChoosePlayersOnce is ${onlyChoosePlayersOnce}`); 
-    if (onlyChoosePlayersOnce === 0){
-        onlyChoosePlayersOnce += 1; 
-        console.log(`onlyChoosePlayerOnce is ${onlyChoosePlayersOnce}`)
-        console.log('running openModal2')
-        openModal2(); 
-    }
+    openModal2(); 
 }
-
+// MODAL 2 - choose number of players
+const openModal2 = () => {
+    $('#modal2').css('display', 'flex');
+    $('#modal2Main').css('justify-content', 'center');
+    console.log('open modal2'); 
+    event.preventDefault(); 
+}
 const closeModal2 = () => {
     $('#modal2').css('display', 'none'); 
     console.log('close modal2')
     event.preventDefault(); 
     getNumPlayers(); 
 }
-
-const closeModal3 = () => {
-    $('#modal3').css('display', 'none'); 
-    console.log('close modal3')
-    event.preventDefault(); 
-    displayPlayerNames(); 
-}
-
-const closeModal4 = () => {
-    $('#modal4').css('display', 'none'); 
-    console.log('close modal4')
-    setup();  
-}
-
-const openModal1 = () => {
-    $('#modal1').css('display', 'flex');
-    $('#modal1Main').css('justify-content', 'center');
-    console.log('open modal1'); 
-}
-
-const openModal2 = () => {
-    $('#modal2').css('display', 'flex');
-    $('#modal2Main').css('justify-content', 'center');
-    console.log('open modal2'); 
-}
-
-const openModal3 = () => {
-    $('#modal3').css('display', 'flex');
-    $('#modal3Main').css('justify-content', 'center');
-    console.log('open modal3'); 
-}
-
 const getNumPlayers = () => {
     const $radioArr = $('.players'); 
     console.log($radioArr); 
-
     if ($radioArr[0].checked){
         $userChoiceNumPlayers = 2; 
     } else if ($radioArr[1].checked){
@@ -64,36 +62,61 @@ const getNumPlayers = () => {
     } else if ($radioArr[2].checked){
         $userChoiceNumPlayers = 4; 
     }
-
+    event.preventDefault(); 
     genModal3(); 
     // console.log($userChoiceNumPlayers); 
 }
-
 const genModal3 = () => {
+    
+    $('#player1Name').val(''); 
+    $('#player2Name').val(''); 
+    
+    let $numNames = $('.playerNames'); 
+    if ($numNames.length === 4){
+        $('#player3Name').remove(); 
+        $('#player3Label').remove(); 
+        $('#player4Name').remove(); 
+        $('#player4Label').remove(); 
+    } else if ($numNames.length === 3){
+        $('#player3Name').remove(); 
+        $('#player3Label').remove(); 
+    } else {
+        console.log('2 players'); 
+    }
+    
     for (let i = 2; i < $userChoiceNumPlayers; i++){
         // generate form input element
-        const $newPlayerNameInput = $(`<input type="text" id="player${i+1}Name" class="playerNames">`)
-        const $newPlayerNameLabel = $(`<label for="player${i+1}Name" id="player${i+1}label" class="labels">Player ${i+1} Name</label>`)
+        let $newPlayerNameInput = $(`<input type="text" id="player${i+1}Name" class="playerNames">`)
+        let $newPlayerNameLabel = $(`<label for="player${i+1}Name" id="player${i+1}Label" class="labels">Player ${i+1} Name</label>`)
         // append to form > div container on modal 3
         $($newPlayerNameLabel).appendTo('#nameContainer'); 
-        $($newPlayerNameInput).appendTo('#nameContainer'); 
-  
+        $($newPlayerNameInput).appendTo('#nameContainer');  
     }
+    event.preventDefault(); 
     openModal3(); 
 }
-
-$namesArray = []; 
+// MODAL 3 - enter player names
+const openModal3 = () => {
+    $('#modal3').css('display', 'flex');
+    $('#modal3Main').css('justify-content', 'center');
+    console.log('open modal3'); 
+    event.preventDefault(); 
+}
+const closeModal3 = () => {
+    $('#modal3').css('display', 'none'); 
+    console.log('close modal3')
+    event.preventDefault(); 
+    displayPlayerNames(); 
+}
+let $namesArray = []; 
 const displayPlayerNames = () => {
- 
     let $player1Name = $('#player1Name').val();
     $namesArray.push($player1Name); 
     let $player2Name = $('#player2Name').val(); 
     $namesArray.push($player2Name); 
-
     if ($userChoiceNumPlayers === 3){
         let $player3Name = $('#player3Name').val(); 
         $namesArray.push($player3Name);  
-
     } else if ($userChoiceNumPlayers === 4){
         let $player3Name = $('#player3Name').val(); 
         $namesArray.push($player3Name);  
@@ -103,16 +126,36 @@ const displayPlayerNames = () => {
     $('#currentPlayerDisplay').text(`${$player1Name}'s turn!`);
    startGame(); 
 }
-
+// MODAL 4 - Win state!
 const openModal4 = () => {
     $('#modal4').css('display', 'flex');
     $('#modal4Main').css('justify-content', 'center');
     console.log('open modal4'); 
+    event.preventDefault(); 
 }
-
-// <input type="text" id="player2Name" class="playerNames">
-// <label for="player2Name">3 Player Game</label>
-
+const closeModal4 = () => {
+    $('#modal4').css('display', 'none'); 
+    console.log('close modal4')
+    //reset
+    for (let i = 0; i < $namesArray.length; i++){
+        $(`#player${i+1}`).remove(); 
+        alert(`player${i+1} image removed - currentPos is ${playMaker.players[i].currentPos} - about to change to 0`);
+        playMaker.players[i].currentPos = 0; 
+        console.log(`${playMaker.players[i].name}'s position is reset to ${playMaker.players[i].currentPos}`);
+    }
+    indexNum = 0;  
+    $namesArray = []; 
+    $playerArray = []; 
+    rowCounter = 0;  
+    toggle = false; 
+    genBoardOnce = false; 
+    highestIndex = 0; 
+    randNum = 0; 
+    currentPlayer = 0; 
+    //start next round
+    event.preventDefault(); 
+    openModal1();  
+}
 ///////////////////
 // PLAYER CLASS
 //////////////////
@@ -259,55 +302,58 @@ const ladder1 = new Ladder('ladder1', 1, 38);
 // let boxCounter = 1;
 let rowCounter = 0;  
 let toggle = false; 
+let genBoardOnce = false; 
 const genBoard = () => {
-    $board.empty();
 
-    for (let i = 0; i < 10; i++) {
-        let $row = $('<div>'); 
+    if (genBoardOnce === false){
+        $board.empty();
+        for (let i = 0; i < 10; i++) {
+            let $row = $('<div>'); 
+            if (toggle === false){
+                $row.addClass('row-standard'); 
+            } else {
+                $row.addClass('row-reverse');
+            }
+
+            let boxCounter = 1 + (rowCounter * 10)
+            for (let i = 0; i < 10; i++){
+                const $boxOuter = $('<div>');
+                // const $boxInner = $('<div>'); 
+                $boxOuter.addClass('boxOuter');
+                // $boxInner.addClass('boxInner');
+                $boxOuter.attr('id', boxCounter);
+                // $boxInner.attr('id', boxCounter + 0.5);
+                $boxOuter.text(boxCounter);    
+                // $boxInner.text('hi');    
+                // $boxInner.appendTo($boxOuter)
+                $boxOuter.css('position', 'relative');
+                $boxOuter.appendTo($row); 
+                console.log($boxOuter); 
+                // console.log($boxInner); 
+                boxCounter += 1; 
+            }        
+        // toggle (re-factor later with element.toggleAttribute() )
         if (toggle === false){
-            $row.addClass('row-standard'); 
+            toggle = true; 
         } else {
-            $row.addClass('row-reverse');
+            toggle = false; 
         }
+        rowCounter += 1; 
+        $row.appendTo('#game-board'); 
+        } // end outer for loop
 
-        let boxCounter = 1 + (rowCounter * 10)
-        for (let i = 0; i < 10; i++){
-            const $boxOuter = $('<div>');
-            const $boxInner = $('<div>'); 
-            $boxOuter.addClass('boxOuter');
-            // $boxInner.addClass('boxInner');
-            $boxOuter.attr('id', boxCounter);
-            // $boxInner.attr('id', boxCounter + 0.5);
-            $boxOuter.text(boxCounter);    
-            // $boxInner.text('hi');    
-            // $boxInner.appendTo($boxOuter)
-            $boxOuter.css('position', 'relative');
-            $boxOuter.appendTo($row); 
-            console.log($boxOuter); 
-            // console.log($boxInner); 
-            boxCounter += 1; 
-        }        
-    // toggle (re-factor later with element.toggleAttribute() )
-    if (toggle === false){
-        toggle = true; 
-    } else {
-        toggle = false; 
+        genBoardOnce = true; 
     }
-    rowCounter += 1; 
-    $row.appendTo('#game-board'); 
-    } // end outer for loop
+        // place actual board image
+        const $img = $('<img id="backgroundImage" src="Images/chutes and ladders board.jpg" alt="game board image">')
+        $img.css('height', '1000px'); 
+        $img.css('width', '1000px'); 
+        // toggle z-index to 0 to see blue square grid
+        $img.css('z-index', '1'); 
+        $img.css('position', 'absolute');  
+        $img.appendTo('#game-board');
+        // $img.css('left', '100px');  
 
-    // place actual board image
-    const $img = $('<img id="backgroundImage" src="Images/chutes and ladders board.jpg" alt="game board image">')
-    $img.css('height', '1000px'); 
-    $img.css('width', '1000px'); 
-    // toggle z-index to 0 to see blue square grid
-    $img.css('z-index', '1'); 
-    $img.css('position', 'absolute');  
-    $img.appendTo('#game-board');
-    // $img.css('left', '100px');  
-
-    // prompt with modal1 HERE // 
 } 
 ////////////////////
 // END GENBOARD()
@@ -366,7 +412,11 @@ const setPlayers = () => {
 //////////////////////////
 // START CHECKWIN()
 //////////////////////////
-
+//Update Scoreboard
+let player1wins = 0; 
+let player2wins = 0; 
+let player3wins = 0; 
+let player4wins = 0; 
 const checkWin = () => {
     console.log('did I win?'); 
     console.log(currentPlayer); 
@@ -379,11 +429,6 @@ const checkWin = () => {
         // update modal 4
         $('#winnerH1').text(`Congratulations! This game's winner is ${$namesArray[indexNum]}`)
 
-        //Update Scoreboard
-        let player1wins = 0; 
-        let player2wins = 0; 
-        let player3wins = 0; 
-        let player4wins = 0; 
         if (indexNum === 0){
             player1wins += 1; 
             $('#player1wins').text(`Player 1 Wins: ${player1wins}`)
@@ -395,7 +440,7 @@ const checkWin = () => {
             $('#player3wins').text(`Player 3 Wins: ${player3wins}`)
         } else {
             player4wins += 1; 
-            $('#player4wins').text(`Player 2 Wins: ${player2wins}`)
+            $('#player4wins').text(`Player 4 Wins: ${player4wins}`)
         }    
         //Congratulate!
         openModal4(); 
@@ -495,6 +540,17 @@ const rollDie = () => {
 ////////////////////
 // playTurn()
 ////////////////////
+const demoPlayTurn = () => {
+    // for (let i = 0; i < 20; i++){
+    //     playTurn(); 
+    // }
+
+    while (currentPlayer.currentPos < 100){
+        playTurn(); 
+    }
+
+}
+
 let currentPlayer = 0; 
 const playTurn = () => {
     console.log('this is playMaker');
@@ -521,31 +577,37 @@ const playTurn = () => {
 // startGame()
 ////////////////////
 const setup = () => {
-    openModal1();   
+    openModal1Init();   
 }
 
 const startGame = () => {
-    genBoard();
+    genBoard(); 
     setPlayers();  
 }
 
 // const $startButton = $('#start-button');
 const $dieRollButton = $('#playTurn-button'); 
-const $openModal1Button = $('#openModal1-button'); 
-const $closeModal1Button = $('#closeModal1-button'); 
+const $demoButton = $('#demo-button'); 
+const $openModal1MidButton = $('#openModal1Mid-button'); 
+const $closeModal1MidButton = $('#closeModal1Mid-button'); 
+const $closeModal1InitButton = $('#closeModal1Init-button'); 
 const $submitButton1 = $('#submitNumPlayers'); 
 const $submitButton2 = $('#submitPlayerNames'); 
 const $closeModal4Button = $('#closeModal4-button'); 
+const $closeModal1Button = $('#closeModal1-button'); 
 const $board = $('#game-board');
 
 // Event Listeners
 // $startButton.on("click", startGame); 
 $dieRollButton.on("click", playTurn); 
-$openModal1Button.on("click", openModal1); 
-$closeModal1Button.on("click", closeModal1); 
+$demoButton.on("click", demoPlayTurn); 
+$openModal1MidButton.on("click", openModal1Mid); 
+$closeModal1InitButton.on("click", closeModal1Init); 
+$closeModal1MidButton.on("click", closeModal1Mid); 
 $submitButton1.on("click", closeModal2); 
 $submitButton2.on("click", closeModal3); 
 $closeModal4Button.on("click", closeModal4); 
+$closeModal1Button.on("click", closeModal1); 
 setup(); 
 
 // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK //
@@ -839,19 +901,26 @@ setup();
 // Task 14 - COMPLETE!!!
 // spruce up the UI
 
-// Task 15 - Working
+// Task 15 - COMPLETE!!!
 // Change win state alert to a modal
 
+// Task 16 - Working
+// complete the logic loop to allow for multiple games 
 
+// Task 17 - Not started
+// Build demo button
+    // while loop - run until done
+
+
+// land by exact count???
 // double check clicking on how to play doesn't ask for setting players again
     // should be fine! - except in demo mode - fix???
-// Add prompt for play again at end of the game!***
+// select better player images
 // Animations
-// Build demo button - runs through 50 rolls
 // Allow user to select player image
-// Finish styling
 
 // CLEANUP
+    // Finish styling    
     // should I have been putting 'event' as parameter in the event listeners/handlers?
     // check on legal restrictions for using board image????
         // Add disclaimer statement? 
@@ -865,3 +934,4 @@ setup();
     // toggle
     // DRY??
     // Make board grid 10% width of board container instead of 100px - responsive?
+    // House functions in objects??

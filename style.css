@@ -182,6 +182,34 @@ body {
     display: none;  
 }
 
+#modal1InitTextBox {
+    max-width: 1400px;
+    height: 40%;
+    width: 60%;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+    z-index: 3;
+    margin: 10% auto auto auto; 
+    padding: 20px; 
+    display: flex;
+    flex-direction: column; 
+    border-radius: 25px;
+    overflow: auto; 
+}
+
+#modal1MidTextBox {
+    max-width: 1400px;
+    height: 40%;
+    width: 60%;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+    z-index: 3;
+    margin: 10% auto auto auto; 
+    padding: 20px; 
+    display: flex;
+    flex-direction: column; 
+    border-radius: 25px;
+    overflow: auto; 
+}
+
 #modal1TextBox {
     max-width: 1400px;
     height: 40%;
@@ -334,5 +362,11 @@ h1 {
     height: 75px;
     width: 150px;
     margin-left: 150px; 
+    box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.4);
+}
+
+#demo-button {
+    height: 75px;
+    width: 150px;
     box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.4);
 }
