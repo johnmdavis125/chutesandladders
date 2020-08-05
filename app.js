@@ -136,10 +136,11 @@ const openModal4 = () => {
 const closeModal4 = () => {
     $('#modal4').css('display', 'none'); 
     console.log('close modal4')
-    //reset
+   
+    // RESET PLAYERS, GLOBAL VARIABLES, DOM INPUTS
     for (let i = 0; i < $namesArray.length; i++){
         $(`#player${i+1}`).remove(); 
-        alert(`player${i+1} image removed - currentPos is ${playMaker.players[i].currentPos} - about to change to 0`);
+        // alert(`player${i+1} image removed - currentPos is ${playMaker.players[i].currentPos} - about to change to 0`);
         playMaker.players[i].currentPos = 0; 
         console.log(`${playMaker.players[i].name}'s position is reset to ${playMaker.players[i].currentPos}`);
     }
@@ -152,6 +153,7 @@ const closeModal4 = () => {
     highestIndex = 0; 
     randNum = 0; 
     currentPlayer = 0; 
+    $userChoiceNumPlayers = 0;
     //start next round
     event.preventDefault(); 
     openModal1();  
@@ -531,9 +533,10 @@ const checkFallOrClimb = () => {
 /////////////////////
 let randNum = 0; 
 const rollDie = () => {
-        randNum = Math.floor(Math.random() * 6) + 1
-        console.log(`die rolled is ${randNum}`); 
-
+    randNum = Math.floor(Math.random() * 6) + 1
+    
+    console.log(`die rolled is ${randNum}`); 
+    $('#rollNumber').text(randNum); 
 
 }
 
@@ -904,17 +907,18 @@ setup();
 // Task 15 - COMPLETE!!!
 // Change win state alert to a modal
 
-// Task 16 - Working
+// Task 16 - COMPLETE!!!
 // complete the logic loop to allow for multiple games 
 
-// Task 17 - Not started
+// Task 17 - COMPLETE!!!
 // Build demo button
     // while loop - run until done
 
+// Task 18 - Working
+// De-bug - change in # players 
+
 
 // land by exact count???
-// double check clicking on how to play doesn't ask for setting players again
-    // should be fine! - except in demo mode - fix???
 // select better player images
 // Animations
 // Allow user to select player image
@@ -935,3 +939,4 @@ setup();
     // DRY??
     // Make board grid 10% width of board container instead of 100px - responsive?
     // House functions in objects??
+    // Put functions into separate js file? 

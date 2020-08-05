@@ -64,10 +64,12 @@
       <form class="modal">
         <div id="nameContainer">
           <label for="player1Name" class="labels">Player 1 Name</label>
+          <!-- <input type="text" id="player1Name" class="playerNames"> -->
           <input type="text" id="player1Name" class="playerNames">
       
           <label for="player2Name" class="labels">Player 2 Name</label>
-          <input type="text" id="player2Name" class="playerNames">      
+          <!-- <input type="text" id="player2Name" class="playerNames">       -->
+          <input type="text" id="player2Name" class="playerNames">  
         </div>
         <button type="submit" id="submitPlayerNames">Submit</button>
       </form>
@@ -126,11 +128,17 @@
     <div id='spot2' class="playerSeat"></div>
     <div id='spot3' class="playerSeat"></div>
   </div>
-<!-- 
-  <div id="currentPlayerDisplay"></div> -->
+
+  <div id="rollDisplay" class="rollDisplay">
+    <p id="rollLabel" class="rollDisplay">You rolled a:</p>
+    <div id="rollNumber" class="rollDisplay"></div>
+  </div>
+
+
 
   <button id='playTurn-button'>Roll</button>
   <button id='demo-button'>Auto Roll</button>
+
 
 
 
