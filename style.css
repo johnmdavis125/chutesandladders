@@ -1,5 +1,5 @@
 * {
-    background-color: thistle;
+    background-color: rgb(81, 85, 88);
 }
 
 body {
@@ -73,7 +73,9 @@ body {
     display: flex; 
     flex-direction: column-reverse;
     flex-wrap: wrap;
+    margin: 25px 100px; 
     /* position: relative;  */
+    box-shadow: 3px 3px 25px rgba(0, 0, 0, 0.4);
 }
 
 .row-standard {
@@ -133,6 +135,7 @@ body {
     display: flex; 
     justify-content: space-around;
     align-items: center;
+    box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.4);
   
 }
 #waitingArea > img {
@@ -150,6 +153,22 @@ body {
     background-color: turquoise;
     display: flex; 
     justify-content: center;
+}
+
+#radioContainer {
+    background-color: rgb(206, 213, 228);
+}
+
+.labels {
+    background-color: rgb(206, 213, 228);
+}
+
+.players {
+    background-color: rgb(206, 213, 228);
+}
+
+.playerNames {
+    background-color: rgb(206, 213, 228);
 }
 
 .modalMainDiv {
@@ -213,7 +232,7 @@ h1 {
 }
 
 .modal {
-    background-color: rgb(216, 207, 207);
+    background-color: rgb(206, 213, 228);
 }
 
 #closeModal1-button {
@@ -229,8 +248,65 @@ h1 {
 #currentPlayerDisplay {
     height: 100px; 
     width: 400px;
-    background-color: silver;
     display: flex; 
     justify-content: center;
     align-items: center;
+    border: 1px solid rgb(29, 94, 131);
+}
+
+#title {
+    width: 60%; 
+    margin: 20px; 
+}
+
+.sections {
+    display: flex; 
+    /* border: 2px solid rgb(50, 51, 54); */
+}
+
+#mainContainer {
+    flex-direction: column;
+    background-color: rgb(29, 94, 131);
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.4);
+    padding: 10px; 
+}
+
+#topDisplay {
+    background-color: rgb(222, 228, 235);
+    justify-content: space-evenly;
+    align-items: center;
+    box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+}
+
+#topDisplay > div,ul,li,button {
+    background-color: rgb(222, 228, 235);
+    /* border: 1px solid rgb(29, 94, 131);  */
+
+}
+
+#imageContainer {
+    justify-content: center;
+    background-color: rgb(29, 94, 131);
+
+}
+
+#scoresList {
+    list-style-type: none;
+}
+
+#navButtons {
+    justify-content: space-between;
+}
+
+#bottomSection {
+    justify-content: center;
+    align-items: center;
+}
+
+#playTurn-button {
+    height: 75px;
+    width: 150px;
+    margin-left: 150px; 
+    box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.4);
 }

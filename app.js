@@ -67,7 +67,7 @@ const genModal3 = () => {
     for (let i = 2; i < $userChoiceNumPlayers; i++){
         // generate form input element
         const $newPlayerNameInput = $(`<input type="text" id="player${i+1}Name" class="playerNames">`)
-        const $newPlayerNameLabel = $(`<label for="player${i+1}Name" id="player${i+1}label">Player ${i+1} Name</label>`)
+        const $newPlayerNameLabel = $(`<label for="player${i+1}Name" id="player${i+1}label" class="labels">Player ${i+1} Name</label>`)
         // append to form > div container on modal 3
         $($newPlayerNameLabel).appendTo('#nameContainer'); 
         $($newPlayerNameInput).appendTo('#nameContainer'); 
@@ -802,6 +802,17 @@ setup();
     //Add modal 3 and all associated ftns
     //Added current player display to DOM
 
+// Task 14 - Working
+// spruce up the UI
+
+// Task 15 - Not started
+// Change win state alert to a modal
+
+// double check clicking on how to play doesn't ask for setting players again
+    // should be fine! - except in demo mode - fix???
+// set appointment with arthur
+// deploy!
+// Add prompt for play again at end of the game!***
 // Animations
 // Styling
 // Build demo button - runs through 50 rolls
@@ -822,3 +833,4 @@ setup();
 // RE-FACTOR
     // toggle
     // DRY??
+    // Make board grid 10% width of board container instead of 100px - responsive?
