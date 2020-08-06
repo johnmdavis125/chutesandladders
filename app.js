@@ -11,12 +11,7 @@ const openModal1Init = () => {
 const closeModal1Init = () => {
     $('#modal1Init').css('display', 'none'); 
     console.log('close modal1Init')
-    // console.log(`onlyChoosePlayersOnceInit is ${onlyChoosePlayersOnceInit}`); 
-    // if (onlyChoosePlayersOnceInit === 0){
-    //     onlyChoosePlayersOnceInit += 1; 
-    //     console.log(`onlyChoosePlayerOnce is ${onlyChoosePlayersOnceInit}`)
-    //     console.log('running openModal2')
-        openModal2(); 
+    openModal2(); 
 }
 // MODAL 1 MID - Welcome (how to play)
 const openModal1Mid = () => {
@@ -175,16 +170,12 @@ class Player {
     move(){
         console.log(`player starts at ${this.currentPos}`)
         console.log(`player rolled a ${randNum}`)
-        // let $playerImg = $(`<img class="player" src=${this.playerImgSrc} alt="pawn image">`)    
-        // remove player from current position
-        // $($playerImg).remove(); 
        
         // Update position based on die roll
         this.currentPos += randNum
         console.log(`New position is ${this.currentPos}`)
         
         // Add player to new position 
-        // $('.player').eq(indexNum).appendTo(`#${this.currentPos}`);
         $(`#${currentPlayer.name}`).appendTo(`#${this.currentPos}`)
         console.log(`I just moved ${currentPlayer.name} to ${this.currentPos}`);
 
@@ -197,8 +188,6 @@ class Player {
         const ladderEnd = [38, 14, 31, 42, 84, 44, 67, 91, 100];
         
         console.log('player climbs ladder');
-        // Hard coded value for now  
-        // this.currentPos += 10; 
 
         console.log(`${currentPlayer.name} about to climb from ${ladderStart[currentLadder]} to ${ladderEnd[currentLadder]}`); 
         this.currentPos = ladderEnd[currentLadder]; 
@@ -206,7 +195,6 @@ class Player {
         console.log(`New position is ${this.currentPos}`)
         // append playerImg to current pos
         console.log(`this is currentPlayer about to climb ${currentPlayer.name}`)
-        // $('.player').eq(indexNum).appendTo(`#${this.currentPos}`);
         $(`#${currentPlayer.name}`).appendTo(`#${this.currentPos}`)
         console.log(`I just moved ${currentPlayer.name} to ${this.currentPos}`);
 
@@ -234,11 +222,6 @@ class Player {
     }
 }
 
-
-// const player1 = new Player('Player 1', 0);  
-// console.log(player1); 
-///////////////
-
 class PlayerFactory {
     constructor (name) {
         this.name = name;
@@ -253,58 +236,12 @@ class PlayerFactory {
     }
 }
 
-       // let $playerImg = $(`<img class="player" src=${this.playerImgSrc} alt="pawn image">`) 
-
-
-
-
-
-
-
-// const playMaker = new PlayerFactory('customNumPlayers')
-// console.log(playMaker); 
-
-// const playerImgSourceArr = ['Images/pawn_blue.jpg', 'Images/pawn_red.jpg', 'Images/pawn_green.jpg', 'Images/pawn_black.jpg']; 
-// playerColors = ['blue', 'red', 'green', 'black']; 
-// for (let i = 0; i < $userChoiceNumPlayers; i++){
-//     console.log(playMaker); 
-//     playMaker.genPlayer(`player${i + 1}`, `${playerColors[i]}`, `${playerImgSourceArr[i]}`); 
-// }
-// console.log(playMaker);
-
-////////////////////
-// LADDER CLASS
-////////////////////
-
-class Ladder {
-    constructor(name, startPos, endPos){
-        this.name = name
-        this.startPos = startPos
-        this.endPos = endPos
-    }
-}
-const ladder1 = new Ladder('ladder1', 1, 38); 
-// console.log(ladder1); 
-// BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK //
-// BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK //
-// BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK //
-// BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK //
-// BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK //
-// BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK //
-// BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK //
-// BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK //
-// BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK //
-// BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK //
-// BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK //
-// BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK //
 ///////////////////////////////////////
 // GAME SEQUENCE
 ///////////////////////////////////////
 ////////////////////
 // GENBOARD() 
 ////////////////////
-// Could use 'i' for setting box ID's, but decided to use boxIdCounter to be more descriptive for readability
-// let boxCounter = 1;
 let rowCounter = 0;  
 let toggle = false; 
 let genBoardOnce = false; 
@@ -337,7 +274,6 @@ const genBoard = () => {
                 // console.log($boxInner); 
                 boxCounter += 1; 
             }        
-        // toggle (re-factor later with element.toggleAttribute() )
         if (toggle === false){
             toggle = true; 
         } else {
@@ -357,8 +293,6 @@ const genBoard = () => {
         $img.css('z-index', '1'); 
         $img.css('position', 'absolute');  
         $img.appendTo('#game-board');
-        // $img.css('left', '100px');  
-
 } 
 ////////////////////
 // END GENBOARD()
@@ -371,20 +305,12 @@ console.log(playMaker);
 console.log(playMaker.players);  
 let $playerArray = []; 
 
-// let userChoiceGlobal = 0; 
-
 const setPlayers = () => {
-    // const $userChoiceNumPlayers = prompt('How many players?'); 
-    // let $playerImg = $(`<img class="player" src=${this.playerImgSrc} alt="pawn image">`) 
-    // userChoiceGlobal = $userChoiceNumPlayers; 
-
-    // const playMaker = new PlayerFactory('customNumPlayers')
     console.log('this is playMaker');
     console.log(playMaker); 
 
     const playerImgSourceArr = ['Images/pawn_blue.jpg', 'Images/pawn_red.jpg', 'Images/pawn_green.jpg', 'Images/pawn_black.jpg']; 
     const playerColors = ['blue', 'red', 'green', 'black']; 
-    
 
     // generate players
     for (let i = 0; i < $userChoiceNumPlayers; i++){
@@ -396,10 +322,8 @@ const setPlayers = () => {
         let $playerImg = $(`<img id="player${i+1}" class="player" src=${playerImgSourceArr[i]} alt="pawn image">`)
         $playerImg.appendTo(`#spot${i}`);  
     }
-    // console.log('this is playmaker third time'); 
-    // console.log(playMaker);
     
-    $playerArray = $('.player')    //.children();  
+    $playerArray = $('.player')    
     console.log('this is playerArray'); 
     console.log($playerArray); 
 
@@ -407,9 +331,6 @@ const setPlayers = () => {
     highestIndex = $playerArray.length; 
     console.log(`this is highest ${highestIndex}`); 
 }
-    // Place in starting area
-    // let $playerImg = $(`<img class="player" src=${this.playerImgSrc} alt="pawn image">`)   
-
 //////////////////////////
 // END SETPLAYERS()
 //////////////////////////
@@ -455,13 +376,9 @@ const checkWin = () => {
 // END CHECKWIN()
 //////////////////////////
 
-
 ////////////////////
 // START SWITCHTURN()
 ////////////////////
-// const $playerArray = $('.player').children();  
-// console.log('this is playerArray'); 
-// console.log($playerArray); 
 let indexNum = 0; 
 let highestIndex = 0; 
 // console.log(`global choice ${userChoiceGlobal}`); 
@@ -470,28 +387,18 @@ const switchTurn = () => {
     // highestIndex = $playerArray.length; 
     console.log(`highest index again ${highestIndex}`)
     
-    // if (indexNum === highestIndex){
-    //     indexNum = 0; 
-    // } else if (indexNum < highestIndex){
-    //     indexNum += 1; 
-    // } else {
-    //     console.log(`indexNum is ${indexNum}`)
-    // }
     if (indexNum < highestIndex -1){
         indexNum += 1; 
     } else {
         indexNum = 0; 
     }
         console.log(`switchTurn just ran - indexNum is ${indexNum}`); 
-
     // display next players turn 
     $('#currentPlayerDisplay').text(`${$namesArray[indexNum]}'s turn!`);
-
 }
 ////////////////////
 // END SWITCHTURN()
 ////////////////////
-
 
 ///////////////////////
 // checkFallOrClimb()
@@ -503,7 +410,6 @@ const checkFallOrClimb = () => {
     const ladderStartPoints = [1, 4, 9, 21, 28, 36, 51, 71, 80]; 
     const chuteStartPoints = [16, 47, 49, 56, 62, 64, 93, 95, 98]; 
 
-    // const checkClimb = (startPoint => startPoint === playMaker.players[indexNum].currentPos);
     const checkClimb = (startPoint => startPoint === currentPlayer.currentPos);
     let climbTime = ladderStartPoints.findIndex(checkClimb);
     if (climbTime >= 0){
@@ -514,18 +420,16 @@ const checkFallOrClimb = () => {
         console.log('no ladders, check for chutes'); 
     }
 
-    // const checkFall = (startPoint => startPoint === playMaker.players[indexNum].currentPos); 
     const checkFall = (startPoint => startPoint === currentPlayer.currentPos); 
     let fallTime = chuteStartPoints.findIndex(checkFall); 
     if (fallTime >= 0){
         console.log(`time to fall down chute${fallTime + 1}`); 
-        // playMaker.players[indexNum].fall();
+
         currentPlayer.fall(fallTime);  
     } else {
         console.log(`no chutes, next player's turn!`); 
     }
 }
-
 
 ///////////////////////
 // END checkFallOrClimb()
@@ -542,19 +446,13 @@ const rollDie = () => {
     $('#rollNumber').text(randNum); 
 
 }
-
 ////////////////////
 // playTurn()
 ////////////////////
 const demoPlayTurn = () => {
-    // for (let i = 0; i < 20; i++){
-    //     playTurn(); 
-    // }
-
     while (currentPlayer.currentPos < 100){
         playTurn(); 
     }
-
 }
 
 let currentPlayer = 0; 
@@ -616,86 +514,7 @@ $closeModal4Button.on("click", closeModal4);
 $closeModal1Button.on("click", closeModal1); 
 setup(); 
 
-// BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK //
-// BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK //
-// BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK //
-// BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK //
-// BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK //
-// BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK //
-// BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK //
-// BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK //
-// BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK //
-// BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK //
-// BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK //
-
-// TRASH 
-
-
-// for loop - makes custom # players - calls genPlayer ftn
-
-
-// // Create new instance of Factory class called ladderFactory
-// const ladderFactory = new Factory('Ladders Inc');
-
-// 
-//////////////////////
-// /// CORGIS////
-//     // VARIABLES
-
-//     // EVENT HANDLERS
-//     const nextImg = () => {
-//         $imgArray.eq(currentImgIndex).css('display', 'none');
-//         if(currentImgIndex < highestIndex) {
-//           currentImgIndex ++;
-//         } else {
-//           currentImgIndex = 0;
-//         }
-//         console.log(currentImgIndex);
-//         $imgArray.eq(currentImgIndex).css('display', 'block');
-//       } 
-//////////////////////
-
-
-//////////////////////////////////////////////
-// Attempt at creating player turn cycle
-// let currentTurn = playersArr[indexNum]; 
-// // let currentPlayer = playMaker.players[currentTurn]; 
-// const switchTurn = () => {
-// console.log('starting switchTurn ftn');
-// console.log($userChoiceNumPlayers); 
-// console.log(`this player has current Turn ${currentTurn}`); 
-// // console.log(currentPlayer); 
-    
-//     if (indexNum === $userChoiceNumPlayers){
-//         indexNum -= $userChoiceNumPlayers 
-//     }
-
-//     indexNum += 1; 
-//     console.log(currentTurn)
-//     currentPlayer = playMaker.players[currentTurn];
-
-//     // feedback only
-//     if (currentTurn === $userChoiceNumPlayers){
-//     console.log(`it is now ${playMaker.players[0].name}'s turn`)
-//     } else {
-//         console.log(`it is now ${playMaker.players[currentTurn].name}'s turn`)
-//     }
-//     // come back to this - it doesn't like .name after 4 rolls
-//     // probably a problem with logic in switchTurn()
-
-// }
-//////////////////////////////////////////////
-
-// look through array methods homework - need one to execute a function based on the first instance of criteria
-
-// let playersArr = []; 
-// for (let i = 0; i < $userChoiceNumPlayers; i++){
-//     playersArr.push(i); 
-// }
-// console.log(playersArr); 
-// // need to think through SCOPE ********************
-
-
+// BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK // BREAK 
 
 //////////////////////////
 ///     PSEUDO CODE    ///
@@ -768,77 +587,9 @@ setup();
 // How to do animations
 
 
-// WAITING AREA
 
-// class Player {
-//     constructor(name, startPos, endPos){
-//         this.name = name
-//         this.startPos = startPos
-//         this.endPos = endPos
-//     }
-//     //move()
-//     //fall()
-//     //climb()
-// }
-// class Ladder {
-//     constructor(name, startPos, endPos){
-//         this.name = name
-//         this.startPos = startPos
-//         this.endPos = endPos
-//     }
-// }
-// class Chute {
-//     constructor(name, startPos, endPos){
-//         this.name = name
-//         this.startPos = startPos
-//         this.endPos = endPos
-//     }
-// }
-
-// class Factory {
-//     constructor (company) {
-//         this.company = company;
-//         this.laddersArray = [];
-//     }
-//     generateLadder () {
-//         const ladder = new Ladder(this.company, this.laddersArray.length);
-//         this.laddersArray.push(ladder);
-//     }
-// }
-
-// // Create new instance of Factory class called ladderFactory
-// const ladderFactory = new Factory('Ladders Inc');
-
-// FUTURE TASKS
-// Task - later
-    // write a function that runs through 100 rounds of the game? 
-
-// Task - later 
-    // build array of objects - to make game rounds dynamic
-    // build a custom array based on # of players user selects
-        // array position will be additional input to all the functions
-    // with each die roll, index position updates
-    // conditional - if reach end of index, start over
-    // app.js - css - only change id or class, styling should be in style.css file
-
-    // PROGRAM START
-
-
-
-
-
-
-// RE-FACTOR TO-DOs
-    // Switch styling of player & board image to inherinted properties from classes on style.css
-    // Change append player image to append player itself in move() method on player class
-    // Change style - position relative to .boxOuter
-
-    // Add "DEMO" button
-        // runs through 50 cycles of the rollDie() action
-        // place a very brief pause in between each cycle so its legible
-
-
-        // Task 1 - COMPLETE!!!
+// WORKFLOW
+// Task 1 - COMPLETE!!!
 // Generate 10 boxes in a row
 // Create player object
 // Generate playTurn
@@ -923,12 +674,6 @@ setup();
 // Task 19 - Working
 // Select better player images
 
-// set restart game button to execute closeModal4 ftn
-// de-bug why auto roll won't execute until roll is executed
-// select better player images
-// Animations
-// Allow user to select player image
-
 // CLEANUP
     // Finish styling    
     // should I have been putting 'event' as parameter in the event listeners/handlers?
@@ -947,3 +692,8 @@ setup();
     // House functions in objects??
     // Put functions into separate js file? 
     // land by exact count???
+    // set restart game button to execute closeModal4 ftn
+    // de-bug why auto roll won't execute until roll is executed
+    // select better player images
+    // Animations
+    // Allow user to select player image
