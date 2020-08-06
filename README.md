@@ -36,13 +36,14 @@ happens.
 - Plyr Factory: custom number of players! Used loop iterator "i" to gen players (Number loop iterations based on user inputs)
 
 #### Taking Turns
-- Plyr arr: counter walked thru index pos' - ref'd as "current plyr"
+- Plyr arr: counter walked thru index pos' - functioned as global ref'd "current plyr"
     - current player move(), climb(), display turn, etc. 
+    - chute/ladder location in arrays -> "findIndex" method -> passed which chute or ladder current player hit as argument to move() method
     - currentPos of given plyr governed primary DOM manipulation
 <br>
 <hr>
 
-## MVP - Features
+## Features
 1. "How to Play" Modal appears with game description
 2. User prompted for number of players (2-4)
 3. User prompted for names of players
