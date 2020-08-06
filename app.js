@@ -917,11 +917,14 @@ setup();
 // Build demo button
     // while loop - run until done
 
-// Task 18 - Working
+// Task 18 - COMPLETE!!!
 // De-bug - change in # players 
 
+// Task 19 - Working
+// Select better player images
 
-
+// set restart game button to execute closeModal4 ftn
+// de-bug why auto roll won't execute until roll is executed
 // select better player images
 // Animations
 // Allow user to select player image

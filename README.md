@@ -1,121 +1,69 @@
 
-# chutesandladders
-<!--
-/////////////////////
-// GAME DESCRIPTION
-/////////////////////
+# PROJECT #1: CHUTES & LADDERS
 
-Chutes & Ladders is a classic boardgame I grew up with as a kid. 
+## SITE LINK
+Live Site
+https://johnmdavis125-chutesandladders.vercel.app/
+My GitHub repo
+https://github.com/johnmdavis125/chutesandladders
 
-There are 100 squares on the board and 2+ players. The number of spaces the player advances each turn is determined by rolling a die once per turn. If the player lands at the bottom of a ladder, they immediately climb to the top. If the player lands at the top of a chute, they immediately slide to the bottom. The win state is reached when a player lands exactly on square 100, at which point the other player loses. The game will continue until this 
+## GAME DESCRIPTION
+Chutes & Ladders is a classic boardgame I grew up with as a kid. Simply put, it's a race to the top!
+
+There are 100 squares on the board and 2-4 players. The number of spaces the player advances each turn is determined by rolling a die once per turn. If the player lands at the bottom of a ladder, they immediately climb to the top. If the player lands at the top of a chute, they immediately slide to the bottom. The win state is reached when a player lands exactly on square 100, at which point the other player loses. The game will continue until this 
 happens.  
 
-/////////////////////
-// MVP
-/////////////////////
+## TECHNOLOGIES USED
+- Built using HTML, CSS, JavaScript with jQuery 
+- Deployed with Vercel
 
-- There will be 2 players
-- Locations of the chutes & ladders are pre-set & reflect the classic game board layout. 
-- At the beginning of the game, a modal will appear with a game description 
-- The players can then enter their names which will be displayed when it is their turn
-- The player will take their turn by clicking the "roll the die" button to generate a       random number between 1 - 6
-- The number of wins for each player will be displayed
-- Either player has the option of clicking on the "how to play button" at any time
-- Either player has the option of clicking on the "reset game" button at any time
-- The name of the winner will be displayed at the end of the game
-- The option to play again or quit will be presented at the end of the game
+## APPROACH
+#### Overview
+- In the spirit of OOP, I used objects to organize the flow of the game logic. Player class used methods to coordinate their movement. 
+- Event listeners & functions written such that entire scope of plyr's acty activated by clicking "roll" at beginning of turn. 
 
-- Commits to Github every day
-/////////////////////
-// STRETCH GOALS
-/////////////////////
+#### Making the Grid
+- Nested Loop: column of 10 flex cont w/10 boxes per row
+- Z-index: layered grid, board img, plyr img's - "sneaky" anchor pts
 
-- CSS Animations!
+#### Creating the Players
+- Plyr Class: "name, color, imgSrc, currentPos, move(), climb(), fall() 
+- Plyr Factory: custom number of players! Used "i" to gen players
 
-/////////////////////
-// Technologies used 
-/////////////////////
+#### Taking Turns
+- Plyr arr: counter walked thru index pos' - ref'd as "current plyr"
+    - current player move(), climb(), display turn, etc. 
+    - currentPos of given plyr governed primary DOM manipulation
+<br>
+<hr>
+## MVP - Features
+- "How to Play" Modal appears with game description
+- User prompted for number of players (2-4)
+- User prompted for names of players
+- Locations of chutes & ladders reflect classic board layout
+- Current Player's name displayed at the top
+- Player clicks Roll button to take their turn (gen's random number 1-6)
+- Die Roll result displayed
+- If player lands on ladder or chute, moved automatically
+- Upon reaching space 100, player congratulated for their win!
+- Number of wins for each player displayed in 'scoreboard' at top right
+- Players can open game instructions without interfering with game flow
+- Players can reset game at any time
+- The option to play again presented at end of each round
 
-- Built with HTML, CSS, JavaScript and jQuery 
-- Played in the DOM, not the console
-- Hosted on Github pages or Vercel
-- Hosted in repository on my personal github account
+## Lessons Learned
+- Your wireframing should include Modals/Feedback to user
+- OOP makes code easier to digest
+- Template Literals are legit
+- Being intentional with scope of variables
+- Dev Tools suite is your best friend
 
-/////////////////////
-// The approach taken
-/////////////////////
-
-In the spirit of OOP, I intend to use objects to organize the flow of the game logic. 
-
-There will be classes for the players, ladders, and chutes. 
-
-All three class types will have properties that store their current position on the board. The player class will also have methods to coordinate their movement. 
-
-Event listeners & functions will be written in such a way that the entire scope of a players' activity will be activated upon a player simply clicking the "roll the die" button once at the beginning of her/her turn. This activity will be reflected by feedback via visual animations or text-based messages.   
-
-Upon Game start, the program will: 
-    - Welcome the players & ask for their names
-    - Provide a game description
-    - Prompt to begin the game
-
-Upon die roll, the program will: 
-    - Generate a random # between 1 - 6
-    - Move the current player accordingly
-    - Check if at base of a ladder or top of a chute
-    - Move accordingly
-    - Check if win state reached
-    - If win, display winner, iterate scoreboard & prompt for play again or quit
-    - If not, switch to the other player's turn
-
-/////////////////////
-// Site Link
-/////////////////////
-
-// Link
-
-/////////////////////
-// Unsolved problems, 
-/////////////////////
-
-//
-
-/////////////////////
-// Future Updates
-/////////////////////
-
-//
-
-/////////////////////
-// MISC
-/////////////////////
-
-//
-
-////////////////////////////
-// DEPLOYMENT & MVP TIMELINE
-////////////////////////////
-// Friday
-    // Research deployment process
-    // Wireframe
-    // Detailed Pseudo Code
-        // Break down the project into parts
-// Saturday
-    // Build initial html/css/js files 
-    // Deploy to GitHub!
-    // Build HTML & some basic CSS 
-        // Use wireframe to set initial classes/id's
-    // Start JS (pending successful deployment to GitHub)
-// Sunday
-    // JS
-// Monday
-    // JS
-// Tuesday
-    // Reach MVP
-    // Implement Stretch Goal
-    // All functionality complete by end of day
-// Wednesday
-    // Clean up code & comments
-    // Practice presentation 
-// Thursday
-    // Project Due at 1000
--->
+## Unsolved problems / Future Updates
+- Animations
+- Re-factoring
+    - Modals not DRY
+    - Ladder/Chute Factories
+    - Responsive sizing
+    - Put functions in separate js file
+    - Land by exact count
+    - Reorganize functions as object methods
