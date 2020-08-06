@@ -30,8 +30,10 @@ happens.
 - Z-index: layered grid, board img, plyr img's - "sneaky" anchor pts
 
 #### Creating the Players
-- Plyr Class: "name, color, imgSrc, currentPos, move(), climb(), fall() 
-- Plyr Factory: custom number of players! Used "i" to gen players
+- Plyr Class: "
+    - Properties: name, color, imgSrc, currentPos
+    - Methods: move(), climb(), fall() 
+- Plyr Factory: custom number of players! Used loop iterator "i" to gen players (Number loop iterations based on user inputs)
 
 #### Taking Turns
 - Plyr arr: counter walked thru index pos' - ref'd as "current plyr"
@@ -39,31 +41,32 @@ happens.
     - currentPos of given plyr governed primary DOM manipulation
 <br>
 <hr>
+
 ## MVP - Features
-- "How to Play" Modal appears with game description
-- User prompted for number of players (2-4)
-- User prompted for names of players
-- Locations of chutes & ladders reflect classic board layout
-- Current Player's name displayed at the top
-- Player clicks Roll button to take their turn (gen's random number 1-6)
-- Die Roll result displayed
-- If player lands on ladder or chute, moved automatically
-- Upon reaching space 100, player congratulated for their win!
-- Number of wins for each player displayed in 'scoreboard' at top right
-- Players can open game instructions without interfering with game flow
-- Players can reset game at any time
-- The option to play again presented at end of each round
+1. "How to Play" Modal appears with game description
+2. User prompted for number of players (2-4)
+3. User prompted for names of players
+4. Locations of chutes & ladders reflect classic board layout
+5. Current Player's name displayed at the top
+6. Player clicks Roll button to take their turn (gen's rand num 1-6)
+7. Die Roll result displayed
+8. If player lands on ladder or chute, moved automatically
+9. Upon reaching space 100, player congratulated for their win!
+10. Number of wins for each player displayed in 'scoreboard' at top right
+11. Players can open game instructions without interfering with game flow
+12. Players can reset game at any time
+13. The option to play again presented at end of each round
 
 ## Lessons Learned
-- Your wireframing should include Modals/Feedback to user
-- OOP makes code easier to digest
-- Template Literals are legit
-- Being intentional with scope of variables
-- Dev Tools suite is your best friend
+1. Your wireframing should include Modals/Feedback to user
+2. OOP makes code easier to digest
+3. Template Literals are legit
+4. Being intentional with scope of variables
+5. Dev Tools suite is your best friend
 
 ## Unsolved problems / Future Updates
-- Animations
-- Re-factoring
+1. Animations
+2. Re-factoring
     - Modals not DRY
     - Ladder/Chute Factories
     - Responsive sizing
