@@ -492,6 +492,7 @@ const startGame = () => {
 // const $startButton = $('#start-button');
 const $dieRollButton = $('#playTurn-button'); 
 const $demoButton = $('#demo-button'); 
+const $restartButton = $('#restart'); 
 const $openModal1MidButton = $('#openModal1Mid-button'); 
 const $closeModal1MidButton = $('#closeModal1Mid-button'); 
 const $closeModal1InitButton = $('#closeModal1Init-button'); 
@@ -505,6 +506,7 @@ const $board = $('#game-board');
 // $startButton.on("click", startGame); 
 $dieRollButton.on("click", playTurn); 
 $demoButton.on("click", demoPlayTurn); 
+$restartButton.on("click", closeModal4); 
 $openModal1MidButton.on("click", openModal1Mid); 
 $closeModal1InitButton.on("click", closeModal1Init); 
 $closeModal1MidButton.on("click", closeModal1Mid); 
@@ -671,8 +673,8 @@ setup();
 // Task 18 - COMPLETE!!!
 // De-bug - change in # players 
 
-// Task 19 - Working
-// Select better player images
+// Task 19 - COMPLETE!!!
+// Set Restart Game Button to reset function
 
 // CLEANUP
     // Finish styling    
@@ -685,6 +687,7 @@ setup();
     // Descriptive Comments
     // No extraneous comments
     // clean up console.log statements - make inuitive
+    // Select better player images
 // RE-FACTOR
     // toggle
     // DRY??
