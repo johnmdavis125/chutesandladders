@@ -4,6 +4,7 @@
 ## SITE LINK
 Live Site
 https://johnmdavis125-chutesandladders.vercel.app/
+<br>
 My GitHub repo
 https://github.com/johnmdavis125/chutesandladders
 
@@ -19,8 +20,10 @@ happens.
 
 ## APPROACH
 #### Overview
-- In the spirit of OOP, I used objects to organize the flow of the game logic. Player class used methods to coordinate their movement. 
-- Event listeners & functions written such that entire scope of plyr's acty activated by clicking "roll" at beginning of turn. 
+- In the spirit of OOP, I used classes/objects with built-in methods to coordinate movement of plyrs.
+- Event listeners & functions drive flow of game logic.  
+    - Entire scope of plyr's acty activated by clicking "roll" at beginning of turn. 
+- Used user inputs to sequentially build custom conditions for each round of game
 
 #### Making the Grid
 - Nested Loop: column of 10 flex cont w/10 boxes per row
