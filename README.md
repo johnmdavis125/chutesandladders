@@ -30,7 +30,7 @@ happens.
 - Z-index: layered grid, board img, plyr img's - "sneaky" anchor pts
 
 #### Creating the Players
-- Plyr Class: "
+- Plyr Class:
     - Properties: name, color, imgSrc, currentPos
     - Methods: move(), climb(), fall() 
 - Plyr Factory: custom number of players! Used loop iterator "i" to gen players (Number loop iterations based on user inputs)
@@ -38,8 +38,8 @@ happens.
 #### Taking Turns
 - Plyr arr: counter walked thru index pos' - functioned as global ref'd "current plyr"
     - current player move(), climb(), display turn, etc. 
-    - chute/ladder location in arrays -> "findIndex" method -> passed which chute or ladder current player hit as argument to move() method
-    - currentPos of given plyr governed primary DOM manipulation
+    - chute/ladder location in arrays -> "findIndex" method -> passed which chute or ladder current player hit as argument to climb() or fall() method
+    - current position of given plyr governed primary DOM manipulation
 <br>
 <hr>
 
